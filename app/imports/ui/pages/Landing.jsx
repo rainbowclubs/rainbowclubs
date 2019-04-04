@@ -10,6 +10,18 @@ const WelcomeMessage = () => (
     </Container>
 );
 
+const LeftColumn = () => (
+    <Container textAlign='center'>
+      New users must register to browse the directory.
+    </Container>
+
+);
+const RightColumn = () => (
+    <Container textAlign='center'>
+      New Clubs must register to be added to the directory and manage their page.
+    </Container>
+)
+
 const LoginForm = () => (
     <div>
       <Grid container textAlign='center' verticalAlign='middle'>
@@ -48,10 +60,22 @@ class Landing extends React.Component {
 
   render() {
     return (
-        <div>
-          {WelcomeMessage()},
-          {LoginForm()}
-        </div>
+        <Grid columns={3} textAlign='center'>
+          <Grid.Column>
+            {LeftColumn()}
+          </Grid.Column>
+          <Grid.Column>
+            <Grid.Row>
+              {WelcomeMessage()}
+            </Grid.Row>
+            <Grid.Row>
+              {LoginForm()}
+            </Grid.Row>
+          </Grid.Column>
+          <Grid.Column>
+            {RightColumn()}
+          </Grid.Column>
+        </Grid>
     );
   }
 }
