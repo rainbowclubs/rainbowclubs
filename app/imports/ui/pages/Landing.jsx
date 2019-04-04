@@ -1,86 +1,34 @@
 import React from 'react';
-import { Grid, Button, Header, Message, Form, Segment, Container } from 'semantic-ui-react';
-
-const green = { background: '#024731' };
-
-const WelcomeMessage = () => (
-    <Container textAlign='center'>
-
-      <Header>Welcome to Rainbow Clubs! Where we hope to bring all of UH Manoas clubs to one easy to find central
-        location!</Header>
-
-    </Container>
-);
-
-const LeftColumn = () => (
-    <Container textAlign='center'>
-      <Message color='blue'>New users must register to browse the directory or be added to a club.</Message>
-    </Container>
-
-);
-const RightColumn = () => (
-    <Container textAlign='center'>
-      <Message color='blue'>New Clubs must register to be added to the directory and manage their
-        page.</Message>
-    </Container>
-);
-
-const LoginForm = () => (
-    <div>
-      <Grid container textAlign='center' verticalAlign='middle'>
-        <Grid.Column style={{ maxWidth: 700 }}>
-          <Header as='h2' style={{ color: '#024731' }} textAlign='center'>
-            Log-in to your account
-          </Header>
-          <Form size='large'>
-            <Segment stacked>
-              <Form.Input fluid icon='user' iconPosition='left' placeholder='E-mail address'/>
-              <Form.Input
-                  fluid
-                  icon='lock'
-                  iconPosition='left'
-                  placeholder='Password'
-                  type='password'
-              />
-
-              <Button style={green} inverted fluid size='large'>
-                Login
-              </Button>
-            </Segment>
-          </Form>
-          <Message>
-            New user? <a href='#'>Register</a>
-          </Message>
-          <Message>
-            New club? <a href='#'>Create Club</a>
-          </Message>
-        </Grid.Column>
-      </Grid>
-    </div>
-);
+import { Search, Button, Grid, Header, Container } from 'semantic-ui-react';
 
 class Landing extends React.Component {
 
   render() {
     return (
-        <Container style={{ width: '90%' }}>
-          <Grid columns={3} textAlign='center'>
-            <Grid.Column>
-              {LeftColumn()}
+        <div style={{ width: '100%' }}>
+          <Container fluid style={{ minHeight: '50vh' }} className={'backgroundimage'}></Container>
+          <Grid relaxed container columns={3} style={{ paddingTop: '10px', minWidth: '90%' }}>
+            <Grid.Column textAlign='center'>
+              <Header as={'h2'}>Mission</Header>
+              <p>The University of Hawaii at Manoa currently has over 200 registered independent organizations. We are
+                hoping to give these clubs a place to call home. And with
+                that a central area where students can easily browse and join the many unique and exhilarating clubs
+                that University of Hawaii at Manoa has to offer.</p>
             </Grid.Column>
-            <Grid.Column>
-              <Grid.Row>
-                {WelcomeMessage()}
-              </Grid.Row>
-              <Grid.Row style={{ paddingTop: '20px' }}>
-                {LoginForm()}
-              </Grid.Row>
+            <Grid.Column textAlign='center'>
+              <Header as={'h2'}>Browse and Join clubs!</Header>
+              <p>After registering you will have access to the full database of UH Manoa clubs. You can browse and join
+                clubs at your leisure </p>
+              <Button size={'massive'} inverted>Sign up</Button>
             </Grid.Column>
-            <Grid.Column>
-              {RightColumn()}
+            <Grid.Column textAlign='center'>
+              <Header as={'h2'}>Club Owners</Header>
+              <p>Are you looking for a place to give your club presence? Look no further! simply register your club and
+                you will be able to manage it easily!</p>
+              <Button size={'massive'} inverted>Create Club</Button>
             </Grid.Column>
           </Grid>
-        </Container>
+        </div>
     );
   }
 }
