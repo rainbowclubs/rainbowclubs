@@ -1,6 +1,8 @@
 import React from 'react';
 import { Grid, Button, Header, Message, Form, Segment, Container } from 'semantic-ui-react';
 
+const green = { background: '#024731' };
+
 const WelcomeMessage = () => (
     <Container textAlign='center'>
 
@@ -12,15 +14,16 @@ const WelcomeMessage = () => (
 
 const LeftColumn = () => (
     <Container textAlign='center'>
-      New users must register to browse the directory.
+      <Message color='blue'>New users must register to browse the directory or be added to a club.</Message>
     </Container>
 
 );
 const RightColumn = () => (
     <Container textAlign='center'>
-      New Clubs must register to be added to the directory and manage their page.
+      <Message color='blue'>New Clubs must register to be added to the directory and manage their
+        page.</Message>
     </Container>
-)
+);
 
 const LoginForm = () => (
     <div>
@@ -40,7 +43,7 @@ const LoginForm = () => (
                   type='password'
               />
 
-              <Button style={{ background: '#024731' }} inverted fluid size='large'>
+              <Button style={green} inverted fluid size='large'>
                 Login
               </Button>
             </Segment>
@@ -60,22 +63,24 @@ class Landing extends React.Component {
 
   render() {
     return (
-        <Grid columns={3} textAlign='center'>
-          <Grid.Column>
-            {LeftColumn()}
-          </Grid.Column>
-          <Grid.Column>
-            <Grid.Row>
-              {WelcomeMessage()}
-            </Grid.Row>
-            <Grid.Row>
-              {LoginForm()}
-            </Grid.Row>
-          </Grid.Column>
-          <Grid.Column>
-            {RightColumn()}
-          </Grid.Column>
-        </Grid>
+        <Container style={{ width: '90%' }}>
+          <Grid columns={3} textAlign='center'>
+            <Grid.Column>
+              {LeftColumn()}
+            </Grid.Column>
+            <Grid.Column>
+              <Grid.Row>
+                {WelcomeMessage()}
+              </Grid.Row>
+              <Grid.Row style={{ paddingTop: '20px' }}>
+                {LoginForm()}
+              </Grid.Row>
+            </Grid.Column>
+            <Grid.Column>
+              {RightColumn()}
+            </Grid.Column>
+          </Grid>
+        </Container>
     );
   }
 }
