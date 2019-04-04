@@ -9,5 +9,48 @@
     { "name": "Bicycle", "quantity": 2, "owner": "john@foo.com", "condition": "poor" },
     { "name": "Banana", "quantity": 2, "owner": "admin@foo.com", "condition": "good" },
     { "name": "Boogie Board", "quantity": 2, "owner": "admin@foo.com", "condition": "excellent" }
+  ],
+
+  "defaultClubs": [
+    {
+      "name": "AECT- Hawaii",
+      "types": ["Academic", "Professional"],
+      "contactName": "Vera Blalock Glushenko",
+      "contactEmail": "vblalock@hawaii.edu",
+      "clubEmail": "aecthi@hawaii.edu",
+      "website": "http://biy.ly/aec-hi"
+    },
+    {
+      "name": "AAUW UHM",
+      "types": ["Political"],
+      "contactName": "Hannah Leibreich",
+      "contactEmail": "hannahli@hawaii.edu",
+      "clubEmail": "",
+      "website": ""
+    },
+    {
+      "name": "AMA/HMA Student Chapter at JABSOM",
+      "types": ["Academic", "Professional"],
+      "contactName": "Lucia Amore",
+      "contactEmail": "lamore@hawaii.edu",
+      "clubEmail": "",
+      "website": ""
+    },
+    {
+      "name": "Academy for Creative Media Student Association",
+      "types": ["Academic", "Professional"],
+      "contactName": "Emma Daily",
+      "contactEmail": "edaily@hawaii.edu",
+      "clubEmail": "",
+      "website": ""
+    },
+    {
+      "name": "Accounting Club",
+      "types": ["Academic", "Professional"],
+      "contactName": "Joyce Pang",
+      "contactEmail": "pjoyce@hawaii.edu",
+      "clubEmail": "acctclub@hawaii.edu",
+      "website": "acuhmanoa.com"
+    }
   ]
 }
