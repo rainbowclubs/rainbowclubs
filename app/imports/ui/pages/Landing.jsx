@@ -1,22 +1,57 @@
 import React from 'react';
-import { Grid, Image } from 'semantic-ui-react';
+import { Grid, Button, Header, Message, Form, Segment, Container } from 'semantic-ui-react';
 
-/** A simple static component to render some text for the landing page. */
+const WelcomeMessage = () => (
+    <Container textAlign='center'>
+
+      <Header>Welcome to Rainbow Clubs! Where we hope to bring all of UH Manoas clubs to one easy to find central
+        location!</Header>
+
+    </Container>
+);
+
+const LoginForm = () => (
+    <div>
+      <Grid container textAlign='center' verticalAlign='middle'>
+        <Grid.Column style={{ maxWidth: 700 }}>
+          <Header as='h2' style={{ color: '#024731' }} textAlign='center'>
+            Log-in to your account
+          </Header>
+          <Form size='large'>
+            <Segment stacked>
+              <Form.Input fluid icon='user' iconPosition='left' placeholder='E-mail address'/>
+              <Form.Input
+                  fluid
+                  icon='lock'
+                  iconPosition='left'
+                  placeholder='Password'
+                  type='password'
+              />
+
+              <Button style={{ background: '#024731' }} inverted fluid size='large'>
+                Login
+              </Button>
+            </Segment>
+          </Form>
+          <Message>
+            New user? <a href='#'>Register</a>
+          </Message>
+          <Message>
+            New club? <a href='#'>Create Club</a>
+          </Message>
+        </Grid.Column>
+      </Grid>
+    </div>
+);
+
 class Landing extends React.Component {
+
   render() {
     return (
-        <Grid verticalAlign='middle' textAlign='center' container>
-
-          <Grid.Column width={4}>
-            <Image size='small' circular src="/images/meteor-logo.png"/>
-          </Grid.Column>
-
-          <Grid.Column width={8}>
-            <h1>Welcome to this template</h1>
-            <p>Now get to work and modify this app!</p>
-          </Grid.Column>
-
-        </Grid>
+        <div>
+          {WelcomeMessage()},
+          {LoginForm()}
+        </div>
     );
   }
 }
