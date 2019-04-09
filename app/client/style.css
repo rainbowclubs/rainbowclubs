@@ -1,0 +1,12 @@
+body {
+  background-color: lightblue !important;
+}
+
+.backgroundimage {
+
+  background: url("/images/collage.png") no-repeat border-box;
+  background-size:     cover;                      /* <------ */
+  background-repeat:   no-repeat;
+  background-position: center center;
+
+}
