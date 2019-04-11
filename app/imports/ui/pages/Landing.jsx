@@ -23,17 +23,18 @@ class Landing extends React.Component {
             </Grid.Column>
             <Grid.Column textAlign='center'>
               <Header as={'h2'}>Club Owners</Header>
-              <p>Are you looking for a place to give your club presence? Look no further! simply register your club and
-                you will be able to manage it easily!</p>
+              <p>Are you looking for a place to give your club presence? Look no further! Club administrators will be
+                able to easily manage their respective clubs!</p>
             </Grid.Column>
             <Grid.Row>
               <Grid.Column>
               </Grid.Column>
               <Grid.Column>
-                <Button size={'massive'} inverted><Link to="/signup">Sign in</Link></Button>
+                <Button size={'massive'} style={{ backgroundColor: '#024731' }}>
+                  <Link style={{ color: '#FFFFFF' }} to="/signup">Register</Link>
+                </Button>
               </Grid.Column>
               <Grid.Column>
-                <Button size={'massive'} inverted><Link to="/createclub">Create Club</Link></Button>
               </Grid.Column>
             </Grid.Row>
           </Grid>
@@ -41,4 +42,5 @@ class Landing extends React.Component {
     );
   }
 }
+
 export default Landing;
