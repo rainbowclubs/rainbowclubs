@@ -1,7 +1,6 @@
 import React from 'react';
 import { Button, Grid, Header, Container } from 'semantic-ui-react';
-import { NavLink } from 'react-router-dom';
-
+import { Link } from 'react-router-dom';
 
 class Landing extends React.Component {
 
@@ -31,10 +30,10 @@ class Landing extends React.Component {
               <Grid.Column>
               </Grid.Column>
               <Grid.Column>
-                <Button size={'massive'} inverted as={NavLink} exact to="/signup">Sign up</Button>
+                <Button size={'massive'} inverted><Link to="/signup">Sign in</Link></Button>
               </Grid.Column>
               <Grid.Column>
-                <Button size={'massive'} inverted as={NavLink} exact to="/createclub">Create Club</Button>
+                <Button size={'massive'} inverted><Link to="/createclub">Create Club</Link></Button>
               </Grid.Column>
             </Grid.Row>
           </Grid>
@@ -42,5 +41,4 @@ class Landing extends React.Component {
     );
   }
 }
-
 export default Landing;
