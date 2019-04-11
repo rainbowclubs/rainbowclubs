@@ -63,6 +63,7 @@ export default class Signup extends React.Component {
                       type="password"
                       onChange={this.handleChange}
                   />
+                  <Form.Checkbox inline label='I agree to the Terms and Conditions' required />
                   <Form.Button content="Submit"/>
                 </Segment>
               </Form>
