@@ -40,7 +40,7 @@ export default class Signup extends React.Component {
         <Container>
           <Grid textAlign="center" verticalAlign="middle" centered columns={2}>
             <Grid.Column>
-              <Header as="h2" textAlign="center">
+              <Header style={{color: "#024731"}} as="h2" textAlign="center">
                 Register your account
               </Header>
               <Form onSubmit={this.handleSubmit}>
