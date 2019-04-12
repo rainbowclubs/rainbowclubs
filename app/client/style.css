@@ -1,3 +1,8 @@
+.backgroundImage {
+  background: url("/images/background.jpg") no-repeat center border-box;
+  background-size: cover;
+  opacity: 0.6;
+}
 
 .UHGreenBackground {
   background-color: #024731 !important;
