@@ -8,7 +8,8 @@ class Landing extends React.Component {
         <div>
           <Container textAlign='center' className={'backgroundImage'} fluid style={{ minHeight: '50vh' }}>
             <Container style={{ paddingTop: '7%' }}>
-              <p style={{ fontWeight: 'bold', color: 'white', fontSize: '40px' }}>The University of Hawaii at Manoa
+              <p className='UHWhiteTextColor' style={{ fontWeight: 'bold', color: 'white', fontSize: '40px' }}>The
+                University of Hawaii at Manoa
                 currently has over
                 200 registered
                 independent organizations. We are
@@ -33,17 +34,19 @@ class Landing extends React.Component {
           <Container>
             <Grid columns={2} centered>
               <Grid.Column style={{ paddingTop: '10%' }} verticalAlign='center' textAlign={'center'}>
-                <Segment className={'UHGreenBackground'}> <Header inverted as={'h2'}>Easily browse the registerd clubs
-                  of UH Manoa by
-                  name and
-                  category!</Header></Segment>
+                <Segment>
+                  <Header className='UHGreenTextColor' as={'h2'}>Easily browse the registerd clubs
+                    of UH Manoa by
+                    name and
+                    category!
+                  </Header>
+                </Segment>
               </Grid.Column>
               <Grid.Column>
                 <Image src={'images/clubs.jpg'}/>
               </Grid.Column>
             </Grid>
           </Container>
-
         </div>
     );
   }
