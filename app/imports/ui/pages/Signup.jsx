@@ -36,6 +36,11 @@ export default class Signup extends React.Component {
 
   /** Display the signup form. */
   render() {
+    const buttonStyle = {
+      color: 'white',
+      width: '100%',
+      background: 'rgb(2, 71, 49)',
+    };
     return (
         <Container>
           <Grid textAlign="center" verticalAlign="middle" centered columns={2}>
@@ -64,7 +69,7 @@ export default class Signup extends React.Component {
                       onChange={this.handleChange}
                   />
                   <Form.Checkbox inline label='I agree to the Terms and Conditions' required />
-                  <Form.Button content="Submit"/>
+                  <Form.Button style={buttonStyle} content="Submit"/>
                 </Segment>
               </Form>
               <Message>
