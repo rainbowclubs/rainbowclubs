@@ -1,9 +1,26 @@
 
-
-.backgroundimage {
-
-  background: url("/images/collage.png") no-repeat border-box;
-  background-size:     cover;                      /* <------ */
-  background-position: center center;
-
+.UHGreenBackground {
+  background-color: #024731 !important;
+}
+.UHGreenBorder {
+  border-color: #024731 !important;
+}
+.UHGreenTextColor {
+  color: #024731 !important;
+}
+.UHWhiteBackground {
+  background-color: #ffffff !important;
+}
+.UHWhiteBorder {
+  border-color: #ffffff !important;
+}
+.UHWhiteTextColor {
+  color: #ffffff !important;
+}
+.UHGreenShadow {
+  -webkit-box-shadow: 0 1px 3px 0 #024731, 0 0 0 1px #024731 !important;
+  box-shadow: 0 1px 3px 0 #024731, 0 0 0 1px #024731 !important;
+}
+.UHGreenBackgroundHover:hover {
+  background-color: #03714e !important;
 }
