@@ -33,7 +33,7 @@ class Landing extends React.Component {
           </Container>
           <Container>
             <Grid columns={2} centered>
-              <Grid.Column style={{ paddingTop: '10%' }} verticalAlign='center' textAlign={'center'}>
+              <Grid.Column verticalAlign='middle' textAlign={'center'}>
                 <Segment>
                   <Header className='UHGreenTextColor' as={'h2'}>Easily browse the registerd clubs
                     of UH Manoa by
