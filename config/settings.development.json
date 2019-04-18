@@ -18,7 +18,9 @@
       "contactName": "Vera Blalock Glushenko",
       "contactEmail": "vblalock@hawaii.edu",
       "clubEmail": "aecthi@hawaii.edu",
-      "website": "http://biy.ly/aec-hi"
+      "website": "http://biy.ly/aec-hi",
+      "admins": [],
+      "description": ""
     },
     {
       "name": "AAUW UHM",
@@ -26,7 +28,9 @@
       "contactName": "Hannah Leibreich",
       "contactEmail": "hannahli@hawaii.edu",
       "clubEmail": "",
-      "website": ""
+      "website": "",
+      "admins": [],
+      "description": ""
     },
     {
       "name": "AMA/HMA Student Chapter at JABSOM",
@@ -34,7 +38,9 @@
       "contactName": "Lucia Amore",
       "contactEmail": "lamore@hawaii.edu",
       "clubEmail": "",
-      "website": ""
+      "website": "",
+      "admins": [],
+      "description": ""
     },
     {
       "name": "Academy for Creative Media Student Association",
@@ -42,7 +48,9 @@
       "contactName": "Emma Daily",
       "contactEmail": "edaily@hawaii.edu",
       "clubEmail": "",
-      "website": ""
+      "website": "",
+      "admins": [],
+      "description": ""
     },
     {
       "name": "Accounting Club",
@@ -50,7 +58,9 @@
       "contactName": "Joyce Pang",
       "contactEmail": "pjoyce@hawaii.edu",
       "clubEmail": "acctclub@hawaii.edu",
-      "website": "acuhmanoa.com"
+      "website": "acuhmanoa.com",
+      "admins": [],
+      "description": ""
     }
   ]
 }

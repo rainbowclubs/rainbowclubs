@@ -19,6 +19,11 @@ const ClubSchema = new SimpleSchema({
     type: String,
     optional: true,
   },
+  admins: [String],
+  description: {
+    type: String,
+    optional: true,
+  },
 }, { tracker: Tracker });
 
 /** Attach this schema to the collection. */
