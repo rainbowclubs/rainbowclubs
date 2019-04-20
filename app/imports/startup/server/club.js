@@ -10,9 +10,31 @@ function addData(data) {
 
 /** Initialize the collection if empty. */
 if (Clubs.find().count() === 0) {
-  if (Meteor.settings.defaultClubs) {
-    console.log('Creating default clubs.');
-    Meteor.settings.defaultClubs.map(data => addData(data));
+  console.log('Creating default clubs.');
+  /** file path in Assets.getText is relative to app/private directory */
+  const text = Assets.getText('default_data.csv');
+  /** split by line, /\r?\n/ matches both \r\n and \n */
+  const textArray = text.split(/\r?\n/);
+  if (textArray.length > 1) {
+    if (textArray[0] !== 'Name of Organization,Type,Contact Person,Email,RIO Email,RIO Website') {
+      console.log('Error parsing default_data.csv - unexpected header');
+    } else {
+      for (let i = 1; i < textArray.length; i++) {
+        const clubArray = textArray[i].split(',');
+        const clubObject = {
+          name: clubArray[0].trim(),
+          types: clubArray[1].split('/').map(str => str.trim()),
+          contactName: clubArray[2].trim(),
+          contactEmail: clubArray[3].trim(),
+          clubEmail: clubArray[4].trim(),
+          website: clubArray[5].trim(),
+          admins: [],
+          description: '',
+        };
+
+        addData(clubObject);
+      }
+    }
   }
 }
 
