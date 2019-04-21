@@ -7,17 +7,17 @@ class Landing extends React.Component {
     return (
         <div>
           <Container textAlign='center' className={'LandingBackgroundImage'} fluid>
-              <Grid style={{ paddingTop: '15%' }} columns={3}>
-                <Grid.Column>
-                  <p className="LargeText UHWhiteTextColor" > Browse Clubs </p>
-                </Grid.Column>
-                <Grid.Column>
-                  <p className="LargeText UHWhiteTextColor" > Manage Clubs </p>
-                </Grid.Column>
-                <Grid.Column>
-                  <p className="LargeText UHWhiteTextColor" > Review Clubs </p>
-                </Grid.Column>
-              </Grid>
+            <Grid style={{ paddingTop: '15%' }} columns={3}>
+              <Grid.Column>
+                <p className="LargeText UHWhiteTextColor"> Browse Clubs </p>
+              </Grid.Column>
+              <Grid.Column>
+                <p className="LargeText UHWhiteTextColor"> Manage Clubs </p>
+              </Grid.Column>
+              <Grid.Column>
+                <p className="LargeText UHWhiteTextColor"> Review Clubs </p>
+              </Grid.Column>
+            </Grid>
           </Container>
           <Container fluid style={{ paddingTop: '20px' }}>
             <Grid columns={'equal'} padded>
@@ -34,10 +34,10 @@ class Landing extends React.Component {
                 <Image centered fluid className='ClubImageSize' src={'images/club2.jpeg'}/>
               </Grid.Column>
               <Grid.Column>
-                  <Segment>
-                    <Header textAlign='center' className='UHGreenTextColor' as='h2'>Katipunan Club</Header>
-                  </Segment>
-                  <Image centered fluid className='ClubImageSize' src={'images/club3.jpg'}/>
+                <Segment>
+                  <Header textAlign='center' className='UHGreenTextColor' as='h2'>Katipunan Club</Header>
+                </Segment>
+                <Image centered fluid className='ClubImageSize' src={'images/club3.jpg'}/>
               </Grid.Column>
             </Grid>
           </Container>
