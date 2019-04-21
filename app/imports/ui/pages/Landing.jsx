@@ -6,28 +6,38 @@ class Landing extends React.Component {
   render() {
     return (
         <div>
-          <Container textAlign='center' className={'backgroundImage'} fluid style={{ minHeight: '50vh' }}>
-            <Container style={{ paddingTop: '7%' }}>
-              <p className='UHWhiteTextColor' style={{ fontWeight: 'bold', color: 'white', fontSize: '40px' }}>The
-                University of Hawaii at Manoa
-                currently has over
-                200 registered
-                independent organizations. We are
-                hoping to give these clubs a place to call home. And with
-                that a central area where students can easily browse and join the many unique and exhilarating clubs
-                that University of Hawaii at Manoa has to offer.</p>
-            </Container>
+          <Container textAlign='center' className={'LandingBackgroundImage'} fluid>
+              <Grid style={{ paddingTop: '15%' }} columns={3}>
+                <Grid.Column>
+                  <p className="LargeText UHWhiteTextColor" > Browse Clubs </p>
+                </Grid.Column>
+                <Grid.Column>
+                  <p className="LargeText UHWhiteTextColor" > Manage Clubs </p>
+                </Grid.Column>
+                <Grid.Column>
+                  <p className="LargeText UHWhiteTextColor" > Review Clubs </p>
+                </Grid.Column>
+              </Grid>
           </Container>
           <Container fluid style={{ paddingTop: '20px' }}>
             <Grid columns={'equal'} padded>
               <Grid.Column>
-                <Image centered fluid style={{ maxHeight: '30vh' }} src={'images/club1.jpg'}/>
+                <Segment>
+                  <Header textAlign='center' className='UHGreenTextColor' as='h2'>Accounting Club</Header>
+                </Segment>
+                <Image centered fluid className='ClubImageSize' src={'images/club1.jpg'}/>
               </Grid.Column>
               <Grid.Column>
-                <Image centered fluid style={{ maxHeight: '30vh' }} src={'images/club2.jpg'}/>
+                <Segment>
+                  <Header textAlign='center' className='UHGreenTextColor' as='h2'>Pre-Vet Club</Header>
+                </Segment>
+                <Image centered fluid className='ClubImageSize' src={'images/club2.jpeg'}/>
               </Grid.Column>
               <Grid.Column>
-                <Image centered fluid style={{ maxHeight: '30vh' }} src={'images/club3.jpg'}/>
+                  <Segment>
+                    <Header textAlign='center' className='UHGreenTextColor' as='h2'>Katipunan Club</Header>
+                  </Segment>
+                  <Image centered fluid className='ClubImageSize' src={'images/club3.jpg'}/>
               </Grid.Column>
             </Grid>
           </Container>
