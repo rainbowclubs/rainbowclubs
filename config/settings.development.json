@@ -9,5 +9,56 @@
     { "name": "Bicycle", "quantity": 2, "owner": "john@foo.com", "condition": "poor" },
     { "name": "Banana", "quantity": 2, "owner": "admin@foo.com", "condition": "good" },
     { "name": "Boogie Board", "quantity": 2, "owner": "admin@foo.com", "condition": "excellent" }
+  ],
+
+  "defaultReviews": [
+    {
+      "club": "",
+      "rating": 0,
+      "description": "",
+      "owner": "john@foo.com"
+    },
+    {
+      "club": "",
+      "rating": 1,
+      "description": "Testing description - visible",
+      "owner": "john@foo.com"
+    },
+    {
+      "club": "",
+      "rating": 2,
+      "description": "Testing description - reviewed, visible",
+      "owner": "john@foo.com",
+      "reviewed": true,
+      "visible": true,
+      "flagged": false
+    },
+    {
+      "club": "",
+      "rating": 3,
+      "description": "Testing description - flagged",
+      "owner": "john@foo.com",
+      "reviewed": false,
+      "visible": false,
+      "flagged": true
+    },
+    {
+      "club": "",
+      "rating": 4,
+      "description": "Testing description - reviewed, flagged",
+      "owner": "john@foo.com",
+      "reviewed": true,
+      "visible": false,
+      "flagged": true
+    },
+    {
+      "club": "",
+      "rating": 5,
+      "description": "Testing description - reviewed, visible, flagged",
+      "owner": "john@foo.com",
+      "reviewed": true,
+      "visible": true,
+      "flagged": true
+    }
   ]
 }
