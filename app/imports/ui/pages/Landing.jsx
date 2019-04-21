@@ -45,7 +45,7 @@ class Landing extends React.Component {
             <Grid columns={2} centered>
               <Grid.Column verticalAlign='middle' textAlign={'center'}>
                 <Segment>
-                  <Header className='UHGreenTextColor' as={'h2'}>Easily browse the registerd clubs
+                  <Header className='UHGreenTextColor' as={'h2'}>Easily browse the registered clubs
                     of UH Manoa by
                     name and
                     category!
