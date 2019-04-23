@@ -12,14 +12,16 @@ class ReviewItem extends React.Component {
           <Table.Cell>{(this.props.review.flagged.toString())}</Table.Cell>
           <Table.Cell>{this.props.review.reviewed.toString()}</Table.Cell>
           <Table.Cell>{this.props.review.visible.toString()}</Table.Cell>
+          <Table.Cell>
+            <Link to={`/editreview/${this.props.review._id}`}>Review</Link>
+          </Table.Cell>
         </Table.Row>
     );
   }
 }
 
 /** Require a document to be passed to this component. */
-ReviewItem
-    .propTypes = {
+ReviewItem.propTypes = {
   review: PropTypes.object.isRequired,
 };
 
