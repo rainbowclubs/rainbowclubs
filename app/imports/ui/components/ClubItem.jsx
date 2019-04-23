@@ -11,8 +11,8 @@ class Club extends React.Component {
     if (this.props.club.website !== undefined && this.props.club.website.length > 0) {
       bottomLinks = (
           <Button.Group attached='bottom'>
-            <Button className={ UHGreenButton }>Read More</Button>
-            <Button className={ UHGreenButton } to={this.props.club.website}>Visit Website</Button>
+            <Button className={ UHGreenButton } to={this.props.club.website}>Read More</Button>
+            <Button className={ UHGreenButton } a href={this.props.club.website}>Visit Website</Button>
           </Button.Group>
       );
     } else {
