@@ -6,7 +6,7 @@ import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { Reviews } from '../../api/review/review';
 
-/** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
+/** Renders a table containing all of the Review documents. Use <ReviewItem> to render each row. */
 class ModeratorListReviews extends React.Component {
 
   /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
@@ -51,7 +51,7 @@ class ModeratorListReviews extends React.Component {
   }
 }
 
-/** Require an array of Stuff documents in the props. */
+/** Require an array of Review documents in the props. */
 ModeratorListReviews.propTypes = {
   reviews: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
