@@ -7,7 +7,7 @@ import { Link, withRouter } from 'react-router-dom';
 class ReviewItem extends React.Component {
 
   convertBoolToYesNo(value) {
-    return value ? 'YES' : 'NO';
+    return value ? 'Yes' : 'No';
   }
 
   render() {
@@ -17,7 +17,7 @@ class ReviewItem extends React.Component {
           <Table.Cell>{this.convertBoolToYesNo(this.props.review.flagged)}  </Table.Cell>
           <Table.Cell>{this.convertBoolToYesNo(this.props.review.reviewed)}</Table.Cell>
           <Table.Cell>{this.convertBoolToYesNo(this.props.review.visible)}</Table.Cell>
-          <Table.Cell><Link to={`/editreview/${this.props.review._id}`}>Review</Link></Table.Cell>
+          <Table.Cell><Link to={`/moderatereview/${this.props.review._id}`}>View</Link></Table.Cell>
         </Table.Row>
     );
   }
