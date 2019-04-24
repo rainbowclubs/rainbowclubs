@@ -43,8 +43,8 @@ class ClubPage extends React.Component {
               </Grid.Column>
             </Grid>
             <Container textAlign='justified'>
-              <b>Description:</b>
               <Divider />
+              <b>Description:</b>
               <p>
                 {this.props.doc.description}
               </p>
