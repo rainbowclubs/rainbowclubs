@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, Label, Button } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 class Club extends React.Component {
@@ -11,13 +11,13 @@ class Club extends React.Component {
     if (this.props.club.website !== undefined && this.props.club.website.length > 0) {
       bottomLinks = (
           <Button.Group attached='bottom'>
-            <Button className={ UHGreenButton }>Read More</Button>
-            <Button className={ UHGreenButton } to={this.props.club.website}>Visit Website</Button>
+            <Button className={ UHGreenButton } as={ Link } to={`/club/${this.props.club._id}`}>Read More</Button>
+            <Button className={ UHGreenButton } as={ Link } to={this.props.club.website}>Visit Website</Button>
           </Button.Group>
       );
     } else {
       bottomLinks = (
-          <Button className={ UHGreenButton }>Read More</Button>
+          <Button className={ UHGreenButton } as={ Link } to={`/club/${this.props.club._id}`}>Read More</Button>
       );
     }
     return (
