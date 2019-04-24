@@ -59,8 +59,7 @@ const ProtectedRoute = ({ component: Component, ...rest }) => (
 
 /**
  * ModeratorProtectedRoute (see React Router v4 sample)
- * Checks for Meteor login and moderator/admin role  before routing to the requested page, otherwise goes to
- * signin page.
+ * Checks for Meteor login and moderator/admin role before routing to the requested page, otherwise goes to signin page.
  * @param {any} { component: Component, ...rest }
  */
 
