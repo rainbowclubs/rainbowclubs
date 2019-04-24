@@ -14,7 +14,7 @@ class ReviewItem extends React.Component {
     return (
         <Table.Row>
           <Table.Cell>{(this.props.review.description)}</Table.Cell>
-          <Table.Cell>{this.convertBoolToYesNo(this.props.review.flagged)}  </Table.Cell>
+          <Table.Cell>{this.convertBoolToYesNo(this.props.review.flagged)}</Table.Cell>
           <Table.Cell>{this.convertBoolToYesNo(this.props.review.reviewed)}</Table.Cell>
           <Table.Cell>{this.convertBoolToYesNo(this.props.review.visible)}</Table.Cell>
           <Table.Cell><Link to={`/moderatereview/${this.props.review._id}`}>View</Link></Table.Cell>
@@ -24,8 +24,7 @@ class ReviewItem extends React.Component {
 }
 
 /** Require a document to be passed to this component. */
-ReviewItem
-    .propTypes = {
+ReviewItem.propTypes = {
   review: PropTypes.object.isRequired,
 };
 

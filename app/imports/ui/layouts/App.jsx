@@ -10,12 +10,12 @@ import Landing from '../pages/Landing';
 import ListClubs from '../pages/ListClubs';
 import ModerateListReviews from '../pages/ModeratorListReviews';
 import ListStuffAdmin from '../pages/ListStuffAdmin';
-import EditStuff from '../pages/EditStuff';
 import NotFound from '../pages/NotFound';
 import Signin from '../pages/Signin';
 import Signup from '../pages/Signup';
 import Signout from '../pages/Signout';
 import ClubPage from '../pages/ClubPage';
+import ModerateReview from '../pages/ModerateReview';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 class App extends React.Component {
@@ -30,8 +30,8 @@ class App extends React.Component {
               <Route path="/signup" component={Signup}/>
               <ProtectedRoute path="/list" component={ListClubs}/>
               <ModeratorProtectedRoute path="/moderate" component={ModerateListReviews}/>
-              <ProtectedRoute path="/edit/:_id" component={EditStuff}/>
               <ProtectedRoute path="/club/:_id" component={ClubPage}/>
+              <ModeratorProtectedRoute path="/moderatereview/:_id" component={ModerateReview}/>
               <AdminProtectedRoute path="/admin" component={ListStuffAdmin}/>
               <ProtectedRoute path="/signout" component={Signout}/>
               <Route component={NotFound}/>
