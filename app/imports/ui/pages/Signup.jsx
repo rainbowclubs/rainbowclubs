@@ -45,7 +45,7 @@ export default class Signup extends React.Component {
         <Container>
           <Grid textAlign="center" verticalAlign="middle" centered columns={2}>
             <Grid.Column>
-              <Header style={{ color: '#024731' }} as="h2" textAlign="center">
+              <Header className={'Sign'} as="h2" textAlign="center">
                 Register your account
               </Header>
               <Form onSubmit={this.handleSubmit}>
@@ -68,7 +68,6 @@ export default class Signup extends React.Component {
                       type="password"
                       onChange={this.handleChange}
                   />
-                  <Form.Checkbox inline label='I agree to the Terms and Conditions' required />
                   <Form.Button style={buttonStyle} content="Submit"/>
                 </Segment>
               </Form>
