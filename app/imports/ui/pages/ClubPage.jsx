@@ -15,6 +15,9 @@ class ClubPage extends React.Component {
 
   /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
   renderPage() {
+    const allTypes = this.props.doc.types.map((data, index) => (
+        <div key={index}>{data}</div>
+    ))
     return (
         <Container schema={ClubSchema} model={this.props.doc}>
           <Header className={'Sign'} as="h2" textAlign="center">{this.props.doc.name}</Header>
@@ -22,31 +25,44 @@ class ClubPage extends React.Component {
             <Grid centered columns={'equal'}>
               <Grid.Column>
                 <Container>
-                  <b>Contact:</b> {this.props.doc.contactName}
+                  <b>Contact: </b> {this.props.doc.contactName}
                 </Container>
                 <Container>
-                  <b>Email:</b> {this.props.doc.contactEmail}
+                  <b>Email: </b> {this.props.doc.contactEmail}
                 </Container>
               </Grid.Column>
               <Grid.Column>
                   <Container textAlign={'center'}>
-                    <b>Types:</b> {this.props.doc.types}
+                    <b>Types: </b>
+                    <div>
+                      {allTypes}
+                    </div>
                   </Container>
               </Grid.Column>
               <Grid.Column>
                 <Container textAlign={'right'}>
-                  <b>Club Email:</b> {this.props.doc.clubEmail}
+                  <b>Club Email: </b> {
+                  this.props.doc.clubEmail !== undefined && this.props.doc.clubEmail.length > 0 ?
+                      this.props.doc.clubEmail : 'No Email'
+                }
                 </Container>
                 <Container textAlign={'right'}>
-                  <b>Club Website:</b> {this.props.doc.clubEmail}
+                  <b>Club Website: </b>
+                  {
+                  this.props.doc.website !== undefined && this.props.doc.website.length > 0 ?
+                      <a href={`${this.props.doc.website}`}>{this.props.doc.website}</a> : 'No Website'
+                  }
                 </Container>
               </Grid.Column>
             </Grid>
             <Container textAlign='justified'>
               <Divider />
-              <b>Description:</b>
               <p>
-                {this.props.doc.description}
+                {
+                  this.props.doc.description !== undefined &&
+                  this.props.doc.description.length > 0 ?
+                      this.props.doc.description : 'Description coming soon'
+                }
               </p>
             </Container>
           </div>

@@ -26,10 +26,10 @@ class Club extends React.Component {
             <Card.Header className='UHGreenTextColor'>{this.props.club.name}</Card.Header>
             <Card.Description>
               {
-                this.props.club.description !== undefined &&
-                this.props.club.description.length > 0 ?
-                    this.props.club.description : 'Description coming soon'
-              }
+              this.props.club.description !== undefined &&
+              this.props.club.description.length > 0 ?
+                  this.props.club.description : 'Description coming soon'
+            }
             </Card.Description>
           </Card.Content>
           <Card.Content extra>
