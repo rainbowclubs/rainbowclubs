@@ -47,16 +47,37 @@ class App extends React.Component {
  * @param {any} { component: Component, ...rest }
  */
 const ProtectedRoute = ({ component: Component, ...rest }) => (
-  <Route
-    {...rest}
-    render={(props) => {
-      const isLogged = Meteor.userId() !== null;
-      return isLogged ?
-          (<Component {...props} />) :
-          (<Redirect to={{ pathname: '/signin', state: { from: props.location } }}/>
-      );
-    }}
-  />
+    <Route
+        {...rest}
+        render={(props) => {
+          const isLogged = Meteor.userId() !== null;
+          return isLogged ?
+              (<Component {...props} />) :
+              (<Redirect to={{ pathname: '/signin', state: { from: props.location } }}/>
+              );
+        }}
+    />
+);
+
+/**
+ * ModeratorProtectedRoute (see React Router v4 sample)
+ * Checks for Meteor login and moderator/admin role before routing to the requested page, otherwise goes to signin page.
+ * @param {any} { component: Component, ...rest }
+ */
+
+const ModeratorProtectedRoute = ({ component: Component, ...rest }) => (
+    <Route
+        {...rest}
+        render={(props) => {
+          const isLogged = Meteor.userId() !== null;
+          const isAdmin = Roles.userIsInRole(Meteor.userId(), 'admin');
+          const isModerator = Roles.userIsInRole(Meteor.userId(), 'moderator');
+          return (isLogged && (isAdmin || isModerator)) ?
+              (<Component {...props} />) :
+              (<Redirect to={{ pathname: '/signin', state: { from: props.location } }}/>
+              );
+        }}
+    />
 );
 
 /**
@@ -80,6 +101,12 @@ const AdminProtectedRoute = ({ component: Component, ...rest }) => (
 
 /** Require a component and location to be passed to each ProtectedRoute. */
 ProtectedRoute.propTypes = {
+  component: PropTypes.func.isRequired,
+  location: PropTypes.object,
+};
+
+/** Require a component and location to be passed to each ProtectedRoute. */
+ModeratorProtectedRoute.propTypes = {
   component: PropTypes.func.isRequired,
   location: PropTypes.object,
 };
