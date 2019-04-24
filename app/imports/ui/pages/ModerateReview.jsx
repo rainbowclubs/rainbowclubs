@@ -17,8 +17,8 @@ class ModerateReview extends React.Component {
 
   /** On successful submit, insert the data. */
   submit(data) {
-    const { club, description, flagged, reviewed, invisible, _id } = data;
-    Reviews.update(_id, { $set: { club, description, flagged, reviewed, invisible } }, (error) => (error ?
+    const { description, flagged, reviewed, visible, _id } = data;
+    Reviews.update(_id, { $set: { description, flagged, reviewed, visible } }, (error) => (error ?
         Bert.alert({ type: 'danger', message: `Update failed: ${error.message}` }) :
         Bert.alert({ type: 'success', message: 'Update succeeded' })));
   }
@@ -36,15 +36,15 @@ class ModerateReview extends React.Component {
             <Header as="h2" textAlign="center">Edit Stuff</Header>
             <AutoForm schema={ReviewSchema} onSubmit={this.submit} model={this.props.doc}>
               <Segment>
-                <HiddenField name='club' />
-                <HiddenField name='rating' />
                 <TextField name='description'/>
                 <BoolField name='flagged'/>
                 <BoolField name='reviewed'/>
                 <BoolField name='visible'/>
                 <SubmitField value='Submit'/>
                 <ErrorsField/>
-                <HiddenField name='owner' />
+                <HiddenField name='club'/>
+                <HiddenField name='rating'/>
+                <HiddenField name='owner'/>
               </Segment>
             </AutoForm>
           </Grid.Column>
@@ -53,7 +53,7 @@ class ModerateReview extends React.Component {
   }
 }
 
-/** Require the presence of a Stuff document in the props object. Uniforms adds 'model' to the props, which we use. */
+/** Require the presence of a Review document in the props object. Uniforms adds 'model' to the props, which we use. */
 ModerateReview.propTypes = {
   doc: PropTypes.object,
   model: PropTypes.object,
@@ -64,7 +64,7 @@ ModerateReview.propTypes = {
 export default withTracker(({ match }) => {
   // Get the documentID from the URL field. See imports/ui/layouts/App.jsx for the route containing :_id.
   const documentId = match.params._id;
-  // Get access to Stuff documents.
+  // Get access to Reviews documents.
   const subscription = Meteor.subscribe('Reviews');
   return {
     doc: Reviews.findOne(documentId),
