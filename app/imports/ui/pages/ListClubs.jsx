@@ -28,6 +28,7 @@ class ListClubs extends React.Component {
   }
 }
 
+
 /** Require an array of Stuff documents in the props. */
 ListClubs.propTypes = {
   clubs: PropTypes.array.isRequired,

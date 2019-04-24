@@ -43,6 +43,11 @@ class Club extends React.Component {
   }
 }
 
+  search(this.props.club.types){
+  return _.find(this.props.club.types, type[index])
+
+};
+
 /** Require a document to be passed to this component. */
 Club.propTypes = {
   club: PropTypes.object.isRequired,
