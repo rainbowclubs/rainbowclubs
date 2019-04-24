@@ -13,7 +13,7 @@ import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 
 /** Renders the Page for editing a single document. */
-class EditReview extends React.Component {
+class ModerateReview extends React.Component {
 
   /** On successful submit, insert the data. */
   submit(data) {
@@ -54,7 +54,7 @@ class EditReview extends React.Component {
 }
 
 /** Require the presence of a Stuff document in the props object. Uniforms adds 'model' to the props, which we use. */
-EditReview.propTypes = {
+ModerateReview.propTypes = {
   doc: PropTypes.object,
   model: PropTypes.object,
   ready: PropTypes.bool.isRequired,
@@ -70,4 +70,4 @@ export default withTracker(({ match }) => {
     doc: Reviews.findOne(documentId),
     ready: subscription.ready(),
   };
-})(EditReview);
+})(ModerateReview);
