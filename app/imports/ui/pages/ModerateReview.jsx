@@ -3,8 +3,8 @@ import { Grid, Loader, Header, Segment } from 'semantic-ui-react';
 import { Reviews, ReviewSchema } from '/imports/api/review/review';
 import { Bert } from 'meteor/themeteorchef:bert';
 import AutoForm from 'uniforms-semantic/AutoForm';
+import LongTextField from 'uniforms-semantic/LongTextField';
 import BoolField from 'uniforms-semantic/BoolField';
-import TextField from 'uniforms-semantic/TextField';
 import SubmitField from 'uniforms-semantic/SubmitField';
 import HiddenField from 'uniforms-semantic/HiddenField';
 import ErrorsField from 'uniforms-semantic/ErrorsField';
@@ -33,17 +33,17 @@ class ModerateReview extends React.Component {
     return (
         <Grid container centered>
           <Grid.Column>
-            <Header as="h2" textAlign="center">Edit Stuff</Header>
+            <Header as="h2" textAlign="center">Moderate Review</Header>
             <AutoForm schema={ReviewSchema} onSubmit={this.submit} model={this.props.doc}>
               <Segment>
-                <TextField name='description'/>
+                <HiddenField name='club'/>
+                <HiddenField name='rating'/>
+                <LongTextField name='description'/>
                 <BoolField name='flagged'/>
                 <BoolField name='reviewed'/>
                 <BoolField name='visible'/>
                 <SubmitField value='Submit'/>
                 <ErrorsField/>
-                <HiddenField name='club'/>
-                <HiddenField name='rating'/>
                 <HiddenField name='owner'/>
               </Segment>
             </AutoForm>
@@ -64,10 +64,11 @@ ModerateReview.propTypes = {
 export default withTracker(({ match }) => {
   // Get the documentID from the URL field. See imports/ui/layouts/App.jsx for the route containing :_id.
   const documentId = match.params._id;
-  // Get access to Reviews documents.
+  // Get access to Review documents.
   const subscription = Meteor.subscribe('Reviews');
   return {
     doc: Reviews.findOne(documentId),
     ready: subscription.ready(),
   };
 })(ModerateReview);
+
