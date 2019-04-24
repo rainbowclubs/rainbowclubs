@@ -36,7 +36,6 @@ class ModerateReview extends React.Component {
             <Header as="h2" textAlign="center">Moderate Review</Header>
             <AutoForm schema={ReviewSchema} onSubmit={this.submit} model={this.props.doc}>
               <Segment>
-
                 <LongTextField name='description'/>
                 <BoolField name='flagged'/>
                 <BoolField name='reviewed'/>
