@@ -99,15 +99,12 @@ class Landing extends React.Component {
     return (
         <div>
           <Container textAlign='center' className={'LandingBackgroundImage'} fluid>
-            <Grid style={{ paddingTop: '15%' }} columns={3}>
+            <Grid style={{ paddingTop: '15%' }} columns={2}>
               <Grid.Column>
-                <p className="LargeText UHWhiteTextColor"> Browse Clubs </p>
+                <Header className="huge UHWhiteTextColor">Every club under the rainbow!</Header>
               </Grid.Column>
               <Grid.Column>
-                <p className="LargeText UHWhiteTextColor"> Manage Clubs </p>
-              </Grid.Column>
-              <Grid.Column>
-                <p className="LargeText UHWhiteTextColor"> Review Clubs </p>
+                <Header className="huge UHWhiteTextColor">Which one will you choose?</Header>
               </Grid.Column>
             </Grid>
           </Container>
@@ -117,19 +114,19 @@ class Landing extends React.Component {
                 <Segment>
                   <Header textAlign='center' className='UHGreenTextColor' as='h2'>Accounting Club</Header>
                 </Segment>
-                <Image centered fluid className='ClubImageSize' src={'images/club1.jpg'}/>
+                <Image centered fluid src='images/club1.png'/>
               </Grid.Column>
               <Grid.Column>
                 <Segment>
                   <Header textAlign='center' className='UHGreenTextColor' as='h2'>Pre-Vet Club</Header>
                 </Segment>
-                <Image centered fluid className='ClubImageSize' src={'images/club2.jpeg'}/>
+                <Image centered fluid src='images/club2.png'/>
               </Grid.Column>
               <Grid.Column>
                 <Segment>
                   <Header textAlign='center' className='UHGreenTextColor' as='h2'>Katipunan Club</Header>
                 </Segment>
-                <Image centered fluid className='ClubImageSize' src={'images/club3.jpg'}/>
+                <Image centered fluid src='images/club3.png'/>
               </Grid.Column>
             </Grid>
           </Container>
