@@ -29,7 +29,7 @@ Meteor.publish('Reviews', function publish() {
   return this.ready();
 });
 
-/** This subscription publishes all documents regardless of user, but only if the logged in user is the Admin. */
+/** This subscription publishes all docs regardless of user, but only if the logged in user is Admin or Moderator. */
 Meteor.publish('ReviewsModerator', function publish() {
   if (this.userId && (Roles.userIsInRole(this.userId, 'moderator') || Roles.userIsInRole(this.userId, 'admin'))) {
     return Reviews.find();

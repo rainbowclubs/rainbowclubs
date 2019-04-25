@@ -60,7 +60,7 @@ ModeratorListReviews.propTypes = {
 /** withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker */
 export default withTracker(() => {
   // Get access to Review documents.
-  const subscription = Meteor.subscribe('Reviews');
+  const subscription = Meteor.subscribe('ReviewsModerator');
   return {
     reviews: Reviews.find({}).fetch(),
     ready: subscription.ready(),
