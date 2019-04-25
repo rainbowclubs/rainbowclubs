@@ -16,6 +16,7 @@ import Signup from '../pages/Signup';
 import Signout from '../pages/Signout';
 import ClubPage from '../pages/ClubPage';
 import ModerateReview from '../pages/ModerateReview';
+import ImportCSVAdmin from '../pages/ImportCSVAdmin';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 class App extends React.Component {
@@ -32,6 +33,7 @@ class App extends React.Component {
               <ModeratorProtectedRoute path="/moderate" component={ModerateListReviews}/>
               <ProtectedRoute path="/club/:_id" component={ClubPage}/>
               <ModeratorProtectedRoute path="/moderatereview/:_id" component={ModerateReview}/>
+              <AdminProtectedRoute path="/import" component={ImportCSVAdmin}/>
               <AdminProtectedRoute path="/admin" component={ListStuffAdmin}/>
               <ProtectedRoute path="/signout" component={Signout}/>
               <Route component={NotFound}/>
