@@ -17,7 +17,7 @@ class ClubPage extends React.Component {
   renderPage() {
     const allTypes = this.props.doc.types.map((data, index) => (
         <div key={index}>{data}</div>
-    ))
+    ));
     return (
         <Container schema={ClubSchema} model={this.props.doc}>
           <Header className={'Sign'} as="h2" textAlign="center">{this.props.doc.name}</Header>
