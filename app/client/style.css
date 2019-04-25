@@ -57,6 +57,23 @@
   background-color: #03714e !important;
 }
 
+
 .Sign {
  color: #024731 !important;
+  font-size: 45px !important;
+  padding-bottom: 20px !important;
+}
+
+.Description {
+  font-size: 19px;
+}
+
+.Contact {
+  font-size: 20px;
+  width: fit-content;
+  padding-bottom: 5px;
+}
+.ContactEmail {
+  padding-top: 5px;
+  font-size: 14px;
 }
