@@ -29,13 +29,17 @@ class Landing extends React.Component {
     let adminSection = '';
     const adminOfClubs = [];
     const clubsExistingArray = this.props.clubs;
-    clubsExistingArray.forEach(function (element) {
-      element.admins.forEach(function (element2) {
-        if (element2 === Meteor.user().username) {
-          adminOfClubs.push(element);
+    if (clubsExistingArray !== undefined) {
+      clubsExistingArray.forEach(function (element) {
+        if (element.admins !== undefined) {
+          element.admins.forEach(function (element2) {
+            if (element2 === Meteor.user().username) {
+              adminOfClubs.push(element);
+            }
+          });
         }
       });
-    });
+    }
     if (adminOfClubs.length > 0) {
       clubAdminSection = (
           <Container style={{ marginTop: '20px' }}>
