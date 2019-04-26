@@ -1,9 +1,6 @@
-
-
 .LandingBackgroundImage {
   background-size: cover !important;
-  min-height: 50vh;
-
+  height: 400px;
   background:
       linear-gradient(
           to bottom,
@@ -11,10 +8,6 @@
           rgba(0, 0, 0, 0.6)
       ),
       url(images/background.jpg) center no-repeat;
-}
-
-.LargeText {
-  font-size: 5em;
 }
 
 .UHGreenBackground {

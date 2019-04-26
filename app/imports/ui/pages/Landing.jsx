@@ -99,13 +99,15 @@ class Landing extends React.Component {
     return (
         <div>
           <Container textAlign='center' className={'LandingBackgroundImage'} fluid>
-            <Grid style={{ paddingTop: '15%' }} columns={2}>
+            <Grid style={{ height: '100%', paddingBottom: '30px' }} verticalAlign='bottom' columns={2}>
+              <Grid.Row>
               <Grid.Column>
                 <Header className="huge UHWhiteTextColor">Every club under the rainbow!</Header>
               </Grid.Column>
               <Grid.Column>
                 <Header className="huge UHWhiteTextColor">Which one will you choose?</Header>
               </Grid.Column>
+              </Grid.Row>
             </Grid>
           </Container>
           <Container fluid style={{ paddingTop: '20px' }}>
