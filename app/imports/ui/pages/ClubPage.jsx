@@ -1,9 +1,11 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Header, Loader, Divider, Grid, Button, Label } from 'semantic-ui-react';
+import { Button, Container, Divider, Feed, Grid, Header, Label, Loader, Rating, Segment } from 'semantic-ui-react';
 import { Clubs, ClubSchema } from '/imports/api/club/club';
+import { Reviews } from '/imports/api/review/review';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
+import AddReview from '/imports/ui/components/AddReview';
 
 /** Renders the Page for editing a single document. */
 class ClubPage extends React.Component {
@@ -18,9 +20,20 @@ class ClubPage extends React.Component {
     const allTypes = this.props.doc.types.map((data, index) => (
           <Label key={index}>{data}</Label>
     ));
+
+    const reviews =
+        <Feed>
+          {
+            this.props.reviews.map((review, index) => <Segment key={index}>
+              <div className={'reviewName'}>{review.owner}</div>
+                <Rating defaultRating={review.rating} maxRating={5} disabled/>
+              {review.description}
+              </Segment>)}
+        </Feed>;
+
     const UHGreenButton = 'UHGreenBackground UHGreenBackgroundHover UHWhiteTextColor';
 
-    const container = (
+    return (
         <Container schema={ClubSchema} model={this.props.doc}>
           <Header className={'Sign'} as="h2" textAlign="center">{this.props.doc.name}</Header>
           <div>
@@ -69,10 +82,18 @@ class ClubPage extends React.Component {
                 }
               </p>
             </Container>
+
+            <Divider/>
+            <div>
+              {reviews}
+            </div>
+            <div>
+              Like the club? Leave a review!
+              <AddReview club={this.props.doc.name} owner={Meteor.user().username}/>
+            </div>
           </div>
         </Container>
     );
-    return container;
   }
 }
 
@@ -80,6 +101,7 @@ class ClubPage extends React.Component {
 ClubPage.propTypes = {
   doc: PropTypes.object,
   model: PropTypes.object,
+  reviews: PropTypes.array,
   ready: PropTypes.bool.isRequired,
 };
 
@@ -91,6 +113,7 @@ export default withTracker(({ match }) => {
   const subscription = Meteor.subscribe('Clubs');
   return {
     doc: Clubs.findOne(documentId),
+    reviews: Reviews.find({}).fetch(),
     ready: subscription.ready(),
   };
 })(ClubPage);
