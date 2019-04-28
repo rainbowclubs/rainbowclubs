@@ -5,9 +5,9 @@ import AutoForm from 'uniforms-semantic/AutoForm';
 import TextField from 'uniforms-semantic/TextField';
 import SubmitField from 'uniforms-semantic/SubmitField';
 import HiddenField from 'uniforms-semantic/HiddenField';
+import NumField from 'uniforms-semantic/NumField';
 import { Bert } from 'meteor/themeteorchef:bert';
 import PropTypes from 'prop-types';
-import NumField from 'uniforms-semantic/NumField';
 
 /** Renders the Page for adding a document. */
 class AddReview extends React.Component {

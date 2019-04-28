@@ -33,11 +33,11 @@ const ReviewSchema = new SimpleSchema({
   },
   visible: {
     type: Boolean,
-    defaultValue: true,
+    autoValue: true,
   },
   flagged: {
     type: Boolean,
-    defaultValue: false,
+    autoValue: false,
   },
   createdAt: {
     type: Date,

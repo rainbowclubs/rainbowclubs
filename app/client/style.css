@@ -66,9 +66,9 @@
 }
 
 .reviewName {
-  font-size: 20px;
+  font-size: 18px;
 }
 
 .reviewDate {
-  opacity: 40%;
+  opacity: 0.5 !important;
 }

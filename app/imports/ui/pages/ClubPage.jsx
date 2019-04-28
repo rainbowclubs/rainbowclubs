@@ -1,18 +1,19 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Button, Container, Divider, Feed, Grid, Header, Label, Loader, Rating, Segment } from 'semantic-ui-react';
+import { Button, Container, Divider, Feed, Grid, Header, Label, Loader, Segment } from 'semantic-ui-react';
 import { Clubs, ClubSchema } from '/imports/api/club/club';
 import { Reviews } from '/imports/api/review/review';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import AddReview from '/imports/ui/components/AddReview';
+import ClubReview from '../components/ClubReview';
 
 /** Renders the Page for editing a single document. */
 class ClubPage extends React.Component {
 
   /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
   render() {
-    return (this.props.ready) ? this.renderPage() : <Loader active>Getting data</Loader>;
+    return (this.props.ready1 && this.props.ready2) ? this.renderPage() : <Loader active>Getting data</Loader>;
   }
 
   /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
@@ -21,15 +22,15 @@ class ClubPage extends React.Component {
           <Label key={index}>{data}</Label>
     ));
 
-    const reviews =
-        <Feed>
-          {
-            this.props.reviews.map((review, index) => <Segment key={index}>
-              <div className={'reviewName'}>{review.owner}</div>
-                <Rating defaultRating={review.rating} maxRating={5} disabled/>
-              {review.description}
-              </Segment>)}
-        </Feed>;
+    const revs = this.props.reviews.filter(review => (review.club === this.props.doc.name));
+
+    const displayReviews = <Feed>
+      <div>
+      {revs.map((review, index) => <Segment key={index}>
+              <ClubReview review={review}/>
+            </Segment>)}
+      </div>
+    </Feed>;
 
     const UHGreenButton = 'UHGreenBackground UHGreenBackgroundHover UHWhiteTextColor';
 
@@ -82,10 +83,9 @@ class ClubPage extends React.Component {
                 }
               </p>
             </Container>
-
             <Divider/>
             <div>
-              {reviews}
+              {displayReviews}
             </div>
             <div>
               Like the club? Leave a review!
@@ -101,8 +101,9 @@ class ClubPage extends React.Component {
 ClubPage.propTypes = {
   doc: PropTypes.object,
   model: PropTypes.object,
-  reviews: PropTypes.array,
-  ready: PropTypes.bool.isRequired,
+  reviews: PropTypes.array.isRequired,
+  ready1: PropTypes.bool.isRequired,
+  ready2: PropTypes.bool.isRequired,
 };
 
 /** withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker */
@@ -110,10 +111,12 @@ export default withTracker(({ match }) => {
   // Get the documentID from the URL field. See imports/ui/layouts/App.jsx for the route containing :_id.
   const documentId = match.params._id;
   // Get access to Stuff documents.
-  const subscription = Meteor.subscribe('Clubs');
+  const subscription1 = Meteor.subscribe('Clubs');
+  const subscription2 = Meteor.subscribe('ReviewsModerator');
   return {
     doc: Clubs.findOne(documentId),
     reviews: Reviews.find({}).fetch(),
-    ready: subscription.ready(),
+    ready1: subscription1.ready(),
+    ready2: subscription2.ready(),
   };
 })(ClubPage);
