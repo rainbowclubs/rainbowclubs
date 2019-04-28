@@ -10,8 +10,14 @@ const ReviewSchema = new SimpleSchema({
   club: String,
   rating: {
     type: SimpleSchema.Integer,
-    min: 0,
-    max: 5,
+    allowedValues: [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+    ],
   },
   description: {
     type: String,
@@ -33,11 +39,11 @@ const ReviewSchema = new SimpleSchema({
   },
   visible: {
     type: Boolean,
-    autoValue: true,
+    defaultValue: true,
   },
   flagged: {
     type: Boolean,
-    autoValue: false,
+    defaultValue: false,
   },
   createdAt: {
     type: Date,

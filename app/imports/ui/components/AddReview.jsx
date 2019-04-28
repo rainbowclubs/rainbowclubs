@@ -5,7 +5,7 @@ import AutoForm from 'uniforms-semantic/AutoForm';
 import TextField from 'uniforms-semantic/TextField';
 import SubmitField from 'uniforms-semantic/SubmitField';
 import HiddenField from 'uniforms-semantic/HiddenField';
-import NumField from 'uniforms-semantic/NumField';
+import SelectField from 'uniforms-semantic/SelectField';
 import { Bert } from 'meteor/themeteorchef:bert';
 import PropTypes from 'prop-types';
 
@@ -32,7 +32,6 @@ class AddReview extends React.Component {
 
   /** On submit, insert the data. */
   submit(data) {
-    console.log(data);
     const { club, rating, description, owner, reviewed, visible, flagged, createdAt } = data;
     Reviews.insert({ club, rating, description, owner, reviewed, visible, flagged, createdAt }, this.insertCallback);
   }
@@ -44,7 +43,7 @@ class AddReview extends React.Component {
           <Segment>
             <HiddenField name='club' value={this.props.club}/>
             <TextField label={'Comments'} name={'description'}/>
-            <NumField name={'rating'} label={'Rating'}/>
+            <SelectField name={'rating'} label={'Rating'}/>
             <SubmitField value='Submit'/>
             <HiddenField name='owner' value={this.props.owner}/>
             <HiddenField name='createdAt' value={new Date()}/>
