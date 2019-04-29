@@ -20,7 +20,7 @@ if (Clubs.find().count() === 0) {
       console.log('Error parsing default_data.csv - unexpected header');
     } else {
       for (let i = 1; i < textArray.length; i++) {
-        const clubArray = textArray[i].split(',');
+        const clubArray = textArray[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
         const clubObject = {
           name: clubArray[0].trim(),
           types: clubArray[1].split('/').map(str => str.trim()),
