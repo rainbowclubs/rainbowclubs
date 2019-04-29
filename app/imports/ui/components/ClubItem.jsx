@@ -9,15 +9,18 @@ class Club extends React.Component {
     const UHGreenButton = 'UHGreenBackground UHGreenBackgroundHover UHWhiteTextColor';
     let bottomLinks;
     if (this.props.club.website !== undefined && this.props.club.website.length > 0) {
+      const websiteURL = (this.props.club.website.indexOf('http') !== 0 ? 'http://' : '') + this.props.club.website;
       bottomLinks = (
           <Button.Group attached='bottom'>
             <Button className={ UHGreenButton } as={ Link } to={`/club/${this.props.club._id}`}>Read More</Button>
-            <Button className={ UHGreenButton } as={ Link } to={this.props.club.website}>Visit Website</Button>
+            <a className={`ui button ${UHGreenButton}`} role="button" href={websiteURL}>Visit Website</a>
           </Button.Group>
       );
     } else {
       bottomLinks = (
-          <Button className={ UHGreenButton } as={ Link } to={`/club/${this.props.club._id}`}>Read More</Button>
+          <Button attached='bottom' className={ UHGreenButton } as={ Link } to={`/club/${this.props.club._id}`}>
+            Read More
+          </Button>
       );
     }
     return (
