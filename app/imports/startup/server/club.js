@@ -31,7 +31,9 @@ if (Clubs.find().count() === 0) {
           admins: [],
           description: '',
         };
-
+        if (clubObject.name === 'Association for Computing Machinery at Manoa') {
+          clubObject.admins.push('clubadmin@foo.com');
+        }
         addData(clubObject);
       }
     }

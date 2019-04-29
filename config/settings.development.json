@@ -1,6 +1,8 @@
 {
   "defaultAccounts": [
     { "email": "admin@foo.com", "password": "changeme", "types": ["Academic", "Professional"], "role": "admin" },
+    { "email": "moderator@foo.com", "password": "changeme", "types": ["Professional"], "role": "moderator" },
+    { "email": "clubadmin@foo.com", "password": "changeme", "types": ["Academic"] },
     { "email": "john@foo.com", "password": "changeme", "types": ["Leisure"] }
   ],
 
