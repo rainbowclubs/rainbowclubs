@@ -1,7 +1,7 @@
 {
   "defaultAccounts": [
-    { "email": "admin@foo.com", "password": "changeme", "role": "admin" },
-    { "email": "john@foo.com", "password": "changeme" }
+    { "email": "admin@foo.com", "password": "changeme", "types": ["Academic", "Professional"], "role": "admin" },
+    { "email": "john@foo.com", "password": "changeme", "types": ["Leisure"] }
   ],
 
   "defaultData": [
