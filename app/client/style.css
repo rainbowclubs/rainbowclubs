@@ -57,3 +57,11 @@
   padding-top: 5px;
   font-size: 14px;
 }
+
+.reviewName {
+  font-size: 18px;
+}
+
+.reviewDate {
+  opacity: 0.5 !important;
+}

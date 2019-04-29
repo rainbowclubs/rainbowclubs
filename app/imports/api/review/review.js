@@ -10,8 +10,8 @@ const ReviewSchema = new SimpleSchema({
   club: String,
   rating: {
     type: SimpleSchema.Integer,
-    min: 0,
     max: 5,
+    min: 0,
   },
   description: {
     type: String,
