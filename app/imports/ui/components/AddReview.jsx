@@ -5,7 +5,7 @@ import AutoForm from 'uniforms-semantic/AutoForm';
 import TextField from 'uniforms-semantic/TextField';
 import SubmitField from 'uniforms-semantic/SubmitField';
 import HiddenField from 'uniforms-semantic/HiddenField';
-import SelectField from 'uniforms-semantic/SelectField';
+import NumField from 'uniforms-semantic/NumField';
 import { Bert } from 'meteor/themeteorchef:bert';
 import PropTypes from 'prop-types';
 
@@ -43,7 +43,7 @@ class AddReview extends React.Component {
           <Segment>
             <HiddenField name='club' value={this.props.club}/>
             <TextField label={'Comments'} name={'description'}/>
-            <SelectField name={'rating'} label={'Rating'}/>
+            <NumField name={'rating'} label={'Rating'}/>
             <SubmitField value='Submit'/>
             <HiddenField name='owner' value={this.props.owner}/>
             <HiddenField name='createdAt' value={new Date()}/>
