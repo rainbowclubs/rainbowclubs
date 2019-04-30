@@ -7,6 +7,7 @@ import Club from '/imports/ui/components/ClubItem';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { Reviews } from '/imports/api/review/review';
 
 class Landing extends React.Component {
 
@@ -43,7 +44,7 @@ class Landing extends React.Component {
     if (adminOfClubs.length > 0) {
       clubAdminSection = (
           <Container style={{ marginTop: '20px' }}>
-            <hr />
+            <hr/>
             <Header className='UHGreenTextColor' as="h1" textAlign="center">Club Admin Tasks</Header>
             <Card.Group>
               {adminOfClubs.map((club, index) => <Club key={index} club={club}/>)}
@@ -52,13 +53,24 @@ class Landing extends React.Component {
       );
     }
     if (isAdmin || isModerator) {
+      const pendingReviews = this.props.reviews.filter(function (review) {
+        return review.flagged;
+      }).length;
+
+      const pendingModifications = this.props.clubs.filter(function (club) {
+        return !club.reviewed;
+      }).length;
       moderatorSection = (
           <Container style={{ marginTop: '20px' }}>
-            <hr />
+            <hr/>
             <Header className='UHGreenTextColor' as="h1" textAlign="center">Moderator Tasks</Header>
             <Container textAlign='center'>
-              <Button size='huge' className='UHGreenBackground UHGreenBackgroundHover UHWhiteTextColor'
-                as={ Link } to='moderate'>Moderate Reviews</Button>
+              <Button size='huge' labeled='true' className='UHGreenBackground UHGreenBackgroundHover UHWhiteTextColor'
+                      content='Review'
+                      icon='heart'
+                      label={{ basic: true, pointing: 'right', content: pendingReviews }}
+                      labelPosition='left'
+                      as={Link} to='moderate'/>
             </Container>
           </Container>
       );
@@ -66,11 +78,11 @@ class Landing extends React.Component {
     if (isAdmin) {
       adminSection = (
           <Container style={{ marginTop: '20px' }}>
-            <hr />
+            <hr/>
             <Header className='UHGreenTextColor' as="h1" textAlign="center">Admin Tasks</Header>
             <Container textAlign='center'>
               <Button size='huge' className='UHGreenBackground UHGreenBackgroundHover UHWhiteTextColor'
-                as={ Link } to='import'>Import CSV</Button>
+                      as={Link} to='import'>Import CSV</Button>
             </Container>
           </Container>
       );
@@ -88,13 +100,13 @@ class Landing extends React.Component {
               </Grid.Column>
               <Grid.Column verticalAlign='middle' textAlign='left'>
                 <Button size='huge' className='UHGreenBackground UHGreenBackgroundHover UHWhiteTextColor'
-                  as={ Link } to='list'>View All Clubs</Button>
+                        as={Link} to='list'>View All Clubs</Button>
               </Grid.Column>
             </Grid>
           </Container>
-          { clubAdminSection }
-          { moderatorSection }
-          { adminSection }
+          {clubAdminSection}
+          {moderatorSection}
+          {adminSection}
         </div>
     );
   }
@@ -105,12 +117,12 @@ class Landing extends React.Component {
           <Container textAlign='center' className={'LandingBackgroundImage'} fluid>
             <Grid style={{ height: '100%', paddingBottom: '30px' }} verticalAlign='bottom' columns={2}>
               <Grid.Row>
-              <Grid.Column>
-                <Header className="huge UHWhiteTextColor">Every club under the rainbow!</Header>
-              </Grid.Column>
-              <Grid.Column>
-                <Header className="huge UHWhiteTextColor">Which one will you choose?</Header>
-              </Grid.Column>
+                <Grid.Column>
+                  <Header className="huge UHWhiteTextColor">Every club under the rainbow!</Header>
+                </Grid.Column>
+                <Grid.Column>
+                  <Header className="huge UHWhiteTextColor">Which one will you choose?</Header>
+                </Grid.Column>
               </Grid.Row>
             </Grid>
           </Container>
@@ -157,18 +169,21 @@ class Landing extends React.Component {
   }
 }
 
-/** Require an array of Stuff documents in the props. */
+/** Require an array of Club documents in the props. */
 Landing.propTypes = {
   clubs: PropTypes.array.isRequired,
+  reviews: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
 };
 
 /** withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker */
 export default withTracker(() => {
   // Get access to Stuff documents.
-  const subscription = Meteor.subscribe('Clubs');
+  const clubSubscription = Meteor.subscribe('Clubs');
+  const reviewSubscription = Meteor.subscribe('ReviewsModerator');
   return {
     clubs: Clubs.find({}).fetch(),
-    ready: subscription.ready(),
+    reviews: Reviews.find({}).fetch(),
+    ready: clubSubscription.ready() && reviewSubscription.ready(),
   };
 })(Landing);
