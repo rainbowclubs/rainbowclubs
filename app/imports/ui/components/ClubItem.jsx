@@ -32,7 +32,7 @@ class Club extends React.Component {
       }
     });
     let clubAdminLink;
-    if (Roles.userIsInRole(this.userId, 'admin') || clubAdmin) {
+    if (Roles.userIsInRole(Meteor.userId(), 'admin') || clubAdmin) {
       clubAdminLink = (
           <Button attached='bottom' className={ UHGreenButton } as={ Link } to={`/edit/${this.props.club._id}`}>
             Edit (Club Admin)
