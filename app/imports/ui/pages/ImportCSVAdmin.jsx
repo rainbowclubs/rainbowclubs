@@ -221,6 +221,7 @@ class ImportCSVAdmin extends React.Component {
                 website: clubArray[5].trim(),
                 admins: [],
                 description: '',
+                reviewed: true,
               };
               let foundIndex = null;
               clubsExistingArray.forEach(function (element, index) {
@@ -242,6 +243,7 @@ class ImportCSVAdmin extends React.Component {
                   clubObject._id = clubsExistingArray[foundIndex]._id;
                   clubObject.admins = clubsExistingArray[foundIndex].admins;
                   clubObject.description = clubsExistingArray[foundIndex].description;
+                  clubObject.reviewed = clubsExistingArray[foundIndex].reviewed;
                   this.clubsUpdatedArray.push(clubObject);
                 }
                 clubsExistingArray.splice(foundIndex, 1);
