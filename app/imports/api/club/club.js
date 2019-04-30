@@ -24,6 +24,10 @@ const ClubSchema = new SimpleSchema({
     type: String,
     optional: true,
   },
+  reviewed: {
+    type: Boolean,
+    defaultValue: true,
+  },
 }, { tracker: Tracker });
 
 /** Attach this schema to the collection. */

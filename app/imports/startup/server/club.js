@@ -48,10 +48,22 @@ Meteor.publish('Clubs', function publish() {
   return this.ready();
 });
 
+Meteor.publish('ClubsClubAdmin', function publish() {
+  if (this.userId) {
+    const username = Meteor.users.findOne(this.userId).username;
+    return Clubs.find({ admins: username });
+  }
+  return this.ready();
+});
+
 /** This subscription publishes all documents regardless of user, but only if the logged in user is the Admin. */
 Meteor.publish('ClubsAdmin', function publish() {
-  if (this.userId && Roles.userIsInRole(this.userId, 'admin')) {
-    return Clubs.find();
+  if (this.userId) {
+    if (Roles.userIsInRole(this.userId, 'admin')) {
+      return Clubs.find();
+    }
+    const username = Meteor.users.findOne(this.userId).username;
+    return Clubs.find({ admins: username });
   }
   return this.ready();
 });

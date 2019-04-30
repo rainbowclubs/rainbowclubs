@@ -1,3 +1,5 @@
+import { Meteor } from 'meteor/meteor';
+import { Roles } from 'meteor/alanning:roles';
 import React from 'react';
 import { Card, Label, Button } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
@@ -23,6 +25,20 @@ class Club extends React.Component {
           </Button>
       );
     }
+    let clubAdmin = false;
+    this.props.club.admins.forEach(function (element) {
+      if (element === Meteor.user().username) {
+        clubAdmin = true;
+      }
+    });
+    let clubAdminLink;
+    if (Roles.userIsInRole(this.userId, 'admin') || clubAdmin) {
+      clubAdminLink = (
+          <Button attached='bottom' className={ UHGreenButton } as={ Link } to={`/edit/${this.props.club._id}`}>
+            Edit (Club Admin)
+          </Button>
+      );
+    }
     return (
         <Card className='UHGreenShadow' centered>
           <Card.Content>
@@ -41,6 +57,7 @@ class Club extends React.Component {
             </Label.Group>
           </Card.Content>
           { bottomLinks }
+          { clubAdminLink }
         </Card>
     );
   }
