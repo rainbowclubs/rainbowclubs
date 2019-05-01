@@ -22,7 +22,7 @@ class ClubPage extends React.Component {
           <Label key={index}>{data}</Label>
     ));
 
-    const revs = this.props.reviews.filter(review => (review.club === this.props.doc.name));
+    const revs = this.props.reviews.filter(review => (review.club === this.props.doc._id));
 
     const displayReviews = <Feed>
       <div>
@@ -89,7 +89,7 @@ class ClubPage extends React.Component {
             </div>
             <div>
               Like the club? Leave a review!
-              <AddReview club={this.props.doc.name} owner={Meteor.user().username}/>
+              <AddReview club={this.props.doc._id} owner={Meteor.user().username}/>
             </div>
           </div>
         </Container>
@@ -112,7 +112,7 @@ export default withTracker(({ match }) => {
   const documentId = match.params._id;
   // Get access to Stuff documents.
   const subscription1 = Meteor.subscribe('Clubs');
-  const subscription2 = Meteor.subscribe('ReviewsModerator');
+  const subscription2 = Meteor.subscribe('Reviews');
   return {
     doc: Clubs.findOne(documentId),
     reviews: Reviews.find({}).fetch(),
