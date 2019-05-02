@@ -1,34 +1,84 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Roles } from 'meteor/alanning:roles';
-import { Loader, Image, Segment, Header, Grid, Container, Card, Button } from 'semantic-ui-react';
+import { Loader, Checkbox, Header, Segment, Grid, Container, Button } from 'semantic-ui-react';
 import { Clubs } from '/imports/api/club/club';
-import Club from '/imports/ui/components/ClubItem';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import { Table } from 'semantic-ui-react/dist/commonjs/collections/Table';
+import { Bert } from 'meteor/themeteorchef:bert';
 
-class Landing extends React.Component {
+class UserInterests extends React.Component {
 
   render() {
     if (Meteor.userId() !== null) {
-      return (this.props.ready) ? this.renderUser() : <Loader active>Getting data</Loader>;
+      return (this.props.ready) ? this.renderUser() :
+          <Loader active>Getting data</Loader>;
     }
     return this.renderNotLoggedIn();
   }
 
+  handleClickTypes = (value) => {
+    if (this.userTypes === undefined) {
+      this.userTypes = [];
+    }
+    if (!this.userTypes.includes(value)) {
+      this.userTypes.push(value);
+    } else {
+      this.userTypes = this.userTypes.filter(function (type) {
+        return type !== value;
+      });
+    }
+  }
+
+  handleClickSubmit = () => {
+    if (Meteor.users.update(Meteor.userId(), {
+      $set: {
+        profile: {
+          types: this.userTypes,
+        },
+      },
+    }) === 0) {
+      Bert.alert({ type: 'danger', message: 'Update failed: Unable to update types' });
+    } else {
+      Bert.alert({ type: 'success', message: 'Update succeeded' });
+    }
+
+  }
+
   renderUser() {
-    const clubTypes = this.props.clubs.distinct(function (club) {
-      return club.type;
+    const clubTypes = [];
+    this.userTypes = Meteor.user().profile.types;
+    this.props.clubs.forEach(function (club) {
+      club.types.forEach(function (types) {
+        if (clubTypes.indexOf(types) === -1) {
+          clubTypes.push(types);
+        }
+      });
     });
 
-    const unique = (value, index, self) => self.indexOf(value) === index;
+    clubTypes.sort();
 
     return (
+
         <Container>
-          {clubTypes.filter((unique) => <Button key={review._id} review={review}/>) }
-          {this.props.reviews.map((review) => <ReviewItem key={review._id} review={review}/>)}
+          <Segment textAlign='center'><Header className='UHGreenTextColor' as={'h2'}>Preferred Club
+            Types</Header></Segment>
+          <Container>
+            <Grid columns='3'>
+              {clubTypes.map((type, index) => <Grid.Column key={index}>
+                <Checkbox key={index}
+                          defaultChecked={this.userTypes.includes(type)}
+                          onChange={this.handleClickTypes.bind(this, type)}
+                          label={type}/></Grid.Column>)}
+            </Grid>
+          </Container>
+          <Grid textAlign='justified' columns='3'>
+            <Grid.Column>
+            </Grid.Column>
+            <Grid.Column>
+              <Button size='large' className='UHGreenBackground UHWhiteTextColor'
+                      onClick={this.handleClickSubmit}>Submit</Button>
+            </Grid.Column>
+          </Grid>
         </Container>
 
     );
@@ -43,17 +93,17 @@ class Landing extends React.Component {
 }
 
 /** Require an array of Stuff documents in the props. */
-Landing.propTypes = {
+UserInterests.propTypes = {
   clubs: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
 };
 
 /** withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker */
 export default withTracker(() => {
-  // Get access to Stuff documents.
+  // Get access to Club documents.
   const subscription = Meteor.subscribe('Clubs');
   return {
     clubs: Clubs.find({}).fetch(),
     ready: subscription.ready(),
   };
-})(Landing);
+})(UserInterests);

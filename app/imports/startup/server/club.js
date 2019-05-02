@@ -23,7 +23,7 @@ if (Clubs.find().count() === 0) {
         const clubArray = textArray[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
         const clubObject = {
           name: clubArray[0].trim(),
-          types: clubArray[1].split('/').map(str => str.trim()),
+          types: clubArray[1].split('/').map(str => str.charAt(0).toUpperCase() + str.slice(1)),
           contactName: clubArray[2].trim(),
           contactEmail: clubArray[3].trim(),
           clubEmail: clubArray[4].trim(),
