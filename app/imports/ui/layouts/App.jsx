@@ -15,6 +15,7 @@ import Signin from '../pages/Signin';
 import Signup from '../pages/Signup';
 import Signout from '../pages/Signout';
 import ClubPage from '../pages/ClubPage';
+import UserSettings from '../pages/UserSettings';
 import ModerateReview from '../pages/ModerateReview';
 import ImportCSVAdmin from '../pages/ImportCSVAdmin';
 import EditClub from '../pages/EditClub';
@@ -31,6 +32,7 @@ class App extends React.Component {
               <Route path="/signin" component={Signin}/>
               <Route path="/signup" component={Signup}/>
               <ProtectedRoute path="/list" component={ListClubs}/>
+              <ProtectedRoute path="/settings" component={UserSettings}/>
               <ModeratorProtectedRoute path="/moderate" component={ModerateListReviews}/>
               <ProtectedRoute path="/club/:_id" component={ClubPage}/>
               <ProtectedRoute path="/edit/:_id" component={EditClub}/>
