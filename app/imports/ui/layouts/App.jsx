@@ -15,7 +15,7 @@ import Signin from '../pages/Signin';
 import Signup from '../pages/Signup';
 import Signout from '../pages/Signout';
 import ClubPage from '../pages/ClubPage';
-import UserInterests from '../pages/UserInterests';
+import UserSettings from '../pages/UserSettings';
 import ModerateReview from '../pages/ModerateReview';
 import ImportCSVAdmin from '../pages/ImportCSVAdmin';
 
@@ -30,9 +30,8 @@ class App extends React.Component {
               <Route exact path="/" component={Landing}/>
               <Route path="/signin" component={Signin}/>
               <Route path="/signup" component={Signup}/>
-              <Route path="/usersettings" component={UserInterests}/>
               <ProtectedRoute path="/list" component={ListClubs}/>
-              <ProtectedRoute path="/userinterests" component={UserInterests}/>
+              <ProtectedRoute path="/settings" component={UserSettings}/>
               <ModeratorProtectedRoute path="/moderate" component={ModerateListReviews}/>
               <ProtectedRoute path="/club/:_id" component={ClubPage}/>
               <ModeratorProtectedRoute path="/moderatereview/:_id" component={ModerateReview}/>

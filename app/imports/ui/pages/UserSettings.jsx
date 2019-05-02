@@ -6,7 +6,7 @@ import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { Bert } from 'meteor/themeteorchef:bert';
 
-class UserInterests extends React.Component {
+class UserSettings extends React.Component {
 
   render() {
     if (Meteor.userId() !== null) {
@@ -93,7 +93,7 @@ class UserInterests extends React.Component {
 }
 
 /** Require an array of Stuff documents in the props. */
-UserInterests.propTypes = {
+UserSettings.propTypes = {
   clubs: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
 };
@@ -106,4 +106,4 @@ export default withTracker(() => {
     clubs: Clubs.find({}).fetch(),
     ready: subscription.ready(),
   };
-})(UserInterests);
+})(UserSettings);
