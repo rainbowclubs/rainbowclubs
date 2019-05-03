@@ -1,9 +1,11 @@
 import { Meteor } from 'meteor/meteor';
 import { Roles } from 'meteor/alanning:roles';
 import React from 'react';
-import { Card, Label, Button } from 'semantic-ui-react';
+import { Card, Label, Button, Rating } from 'semantic-ui-react';
+import { Reviews } from '/imports/api/review/review';
 import PropTypes from 'prop-types';
-import { withRouter, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { withTracker } from 'meteor/react-meteor-data';
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 class Club extends React.Component {
@@ -39,16 +41,35 @@ class Club extends React.Component {
           </Button>
       );
     }
+    let clubDescription;
+    if (this.props.club.description === undefined || this.props.club.description.length === 0) {
+      clubDescription = 'Description coming soon';
+    } else if (this.props.club.description.length > 100) {
+      clubDescription = `${this.props.club.description.substring(0, 97)}...`;
+    } else {
+      clubDescription = this.props.club.description;
+    }
+    let clubRating;
+    const clubReviews = this.props.reviews.filter(
+        review => (review.club === this.props.club._id && review.visible === true),
+    );
+    if (clubReviews.length > 0) {
+      let reviewTotal = 0;
+      clubReviews.forEach(function (element) {
+        reviewTotal += element.rating;
+      });
+      const reviewAverage = Math.round(reviewTotal / clubReviews.length);
+      clubRating = (
+          <Rating icon='star' defaultRating={reviewAverage} maxRating={5} disabled />
+      );
+    }
     return (
         <Card className='UHGreenShadow' centered>
           <Card.Content>
             <Card.Header className='UHGreenTextColor'>{this.props.club.name}</Card.Header>
+            { clubRating }
             <Card.Description>
-              {
-              this.props.club.description !== undefined &&
-              this.props.club.description.length > 0 ?
-                  this.props.club.description : 'Description coming soon'
-            }
+              { clubDescription }
             </Card.Description>
           </Card.Content>
           <Card.Content extra>
@@ -66,7 +87,13 @@ class Club extends React.Component {
 /** Require a document to be passed to this component. */
 Club.propTypes = {
   club: PropTypes.object.isRequired,
+  reviews: PropTypes.array.isRequired,
 };
 
-/** Wrap this component in withRouter since we use the <Link> React Router element. */
-export default withRouter(Club);
+export default withTracker(() => {
+  const subscription = Meteor.subscribe('Reviews');
+  return {
+    reviews: Reviews.find({}).fetch(),
+    ready: subscription.ready(),
+  };
+})(Club);

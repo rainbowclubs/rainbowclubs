@@ -1,5 +1,6 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
+import ReactMarkdown from 'react-markdown';
 import { Button, Container, Divider, Feed, Grid, Header, Label, Loader, Segment } from 'semantic-ui-react';
 import { Clubs, ClubSchema } from '/imports/api/club/club';
 import { Reviews } from '/imports/api/review/review';
@@ -33,7 +34,10 @@ class ClubPage extends React.Component {
     </Feed>;
 
     const UHGreenButton = 'UHGreenBackground UHGreenBackgroundHover UHWhiteTextColor';
-
+    let websiteURL;
+    if (this.props.doc.website !== undefined && this.props.doc.website.length > 0) {
+      websiteURL = (this.props.doc.website.indexOf('http') !== 0 ? 'http://' : '') + this.props.doc.website;
+    }
     return (
         <Container schema={ClubSchema} model={this.props.doc}>
           <Header className={'Sign'} as="h2" textAlign="center">{this.props.doc.name}</Header>
@@ -42,55 +46,43 @@ class ClubPage extends React.Component {
               <Grid.Column>
 
                 <Container className={'Contact'}>
-                  <b>Contact: </b> {this.props.doc.contactName}
-                  <Container className={'ContactEmail'}>
-                    <b>Email: </b>{this.props.doc.contactEmail}
-                  </Container>
+                  <b>Contact: </b>
+                  <a href={`mailto:${this.props.doc.contactEmail}`}>{this.props.doc.contactName}</a>
                 </Container>
 
               </Grid.Column>
               <Grid.Column>
                 <Container textAlign={'center'}>
-                  <b>Types:</b>
-                  <div>
-                    {allTypes}
-                  </div>
+                  {allTypes}
                 </Container>
               </Grid.Column>
               <Grid.Column>
-                <Container className={'Contact'} textAlign={'right'}>
-                  {
-                    this.props.doc.clubEmail !== undefined && this.props.doc.clubEmail.length > 0 ?
-                        <div><b>Club Email: </b>{this.props.doc.clubEmail}</div> : ''
-                  }
-                </Container>
                 <Container textAlign={'right'}>
                   {
+                    !(this.props.doc.clubEmail !== undefined && this.props.doc.clubEmail.length > 0) ? '' :
+                        <Button className={UHGreenButton} href={`mailto:${this.props.doc.clubEmail}`}>
+                          Email Club</Button>
+                  }
+                  {
                     !(this.props.doc.website !== undefined && this.props.doc.website.length > 0) ? '' :
-                        <div><Button className={UHGreenButton} href={`${this.props.doc.website}`}>Club Website</Button>
-                        </div>
+                        <Button className={UHGreenButton} href={websiteURL}>Visit Website</Button>
                   }
                 </Container>
               </Grid.Column>
             </Grid>
             <Container className={'Description'} textAlign='justified'>
               <Divider/>
-              <p>
-                {
-                  this.props.doc.description !== undefined &&
-                  this.props.doc.description.length > 0 ?
-                      this.props.doc.description : 'Description coming soon'
-                }
-              </p>
+              {
+                this.props.doc.description !== undefined &&
+                this.props.doc.description.length > 0 ?
+                    <ReactMarkdown source={this.props.doc.description} /> : 'Description coming soon'
+              }
             </Container>
             <Divider/>
-            <div>
-              {displayReviews}
-            </div>
-            <div>
-              Like the club? Leave a review!
-              <AddReview club={this.props.doc._id} owner={Meteor.user().username}/>
-            </div>
+            <Header className='UHGreenTextColor' as="h1">Reviews</Header>
+            {displayReviews}
+            <Header className='UHGreenTextColor' as="h1">Like {this.props.doc.name}? Leave a review!</Header>
+            <AddReview club={this.props.doc._id} owner={Meteor.user().username}/>
           </div>
         </Container>
     );
