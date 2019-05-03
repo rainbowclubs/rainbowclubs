@@ -2,10 +2,11 @@ import React from 'react';
 import { Reviews, ReviewSchema } from '/imports/api/review/review';
 import { Segment } from 'semantic-ui-react';
 import AutoForm from 'uniforms-semantic/AutoForm';
-import TextField from 'uniforms-semantic/TextField';
+import LongTextField from 'uniforms-semantic/LongTextField';
 import SubmitField from 'uniforms-semantic/SubmitField';
 import HiddenField from 'uniforms-semantic/HiddenField';
 import NumField from 'uniforms-semantic/NumField';
+import ErrorsField from 'uniforms-semantic/ErrorsField';
 import { Bert } from 'meteor/themeteorchef:bert';
 import PropTypes from 'prop-types';
 
@@ -32,26 +33,33 @@ class AddReview extends React.Component {
 
   /** On submit, insert the data. */
   submit(data) {
-    const { club, rating, description, owner, reviewed, visible, flagged, createdAt } = data;
-    Reviews.insert({ club, rating, description, owner, reviewed, visible, flagged, createdAt }, this.insertCallback);
+    const ReviewObject = {
+      club: this.props.club,
+      rating: data.rating,
+      description: (data.description === undefined ? '' : data.description.trim()),
+      owner: this.props.owner,
+      createdAt: new Date(),
+    };
+    Reviews.insert(ReviewObject, this.insertCallback);
   }
 
   /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
   render() {
     return (
+        <Segment>
           <AutoForm ref={(ref) => { this.formRef = ref; }} schema={ReviewSchema} onSubmit={this.submit}>
-          <Segment>
-            <HiddenField name='club' value={this.props.club}/>
-            <TextField label={'Comments'} name={'description'}/>
-            <NumField name={'rating'} label={'Rating'}/>
+            <NumField as='rating' name={'rating'} label={'Rating'}/>
+            <LongTextField placeholder='Comments' label='Comments (Optional)' name={'description'}/>
             <SubmitField value='Submit'/>
-            <HiddenField name='owner' value={this.props.owner}/>
-            <HiddenField name='createdAt' value={new Date()}/>
-            <HiddenField name='visible' value={true}/>
+            <ErrorsField/>
+            <HiddenField name='club' value='fakeclubid'/>
+            <HiddenField name='owner' value='fakeuser@foo.com'/>
+            <HiddenField name='reviewed' value={false}/>
+            <HiddenField name='visible' value={false}/>
             <HiddenField name='flagged' value={false}/>
-            <HiddenField name='reviewed' value={true}/>
-          </Segment>
-        </AutoForm>
+            <HiddenField name='createdAt' value={new Date()}/>
+          </AutoForm>
+        </Segment>
     );
   }
 }

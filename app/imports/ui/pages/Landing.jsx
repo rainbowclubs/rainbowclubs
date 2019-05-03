@@ -126,6 +126,18 @@ class Landing extends React.Component {
   }
 
   renderNotLoggedIn() {
+    let accountingClubLink = '/club/notfound';
+    let preVeterinaryClubLink = '/club/notfound';
+    let katipunanClubLink = '/club/notfound';
+    this.props.clubs.forEach(function (element) {
+      if (element.name === 'Accounting Club') {
+        accountingClubLink = `/club/${element._id}`;
+      } else if (element.name === 'Pre-Veterinary Club') {
+        preVeterinaryClubLink = `/club/${element._id}`;
+      } else if (element.name === 'Katipunan Club') {
+        katipunanClubLink = `/club/${element._id}`;
+      }
+    });
     return (
         <div>
           <Container textAlign='center' className={'LandingBackgroundImage'} fluid>
@@ -144,21 +156,27 @@ class Landing extends React.Component {
             <Grid columns={'equal'} padded>
               <Grid.Column>
                 <Segment>
-                  <Header textAlign='center' className='UHGreenTextColor' as='h2'>Accounting Club</Header>
+                  <Container as={Link} to={accountingClubLink}>
+                    <Header textAlign='center' className='UHGreenTextColor' as='h2'>Accounting Club</Header>
+                    <Image centered fluid src='images/club1.png'/>
+                  </Container>
                 </Segment>
-                <Image centered fluid src='images/club1.png'/>
               </Grid.Column>
               <Grid.Column>
                 <Segment>
-                  <Header textAlign='center' className='UHGreenTextColor' as='h2'>Pre-Vet Club</Header>
+                  <Container as={Link} to={preVeterinaryClubLink}>
+                    <Header textAlign='center' className='UHGreenTextColor' as='h2'>Pre-Veterinary Club</Header>
+                    <Image centered fluid src='images/club2.png'/>
+                  </Container>
                 </Segment>
-                <Image centered fluid src='images/club2.png'/>
               </Grid.Column>
               <Grid.Column>
                 <Segment>
-                  <Header textAlign='center' className='UHGreenTextColor' as='h2'>Katipunan Club</Header>
+                  <Container as={Link} to={katipunanClubLink}>
+                    <Header textAlign='center' className='UHGreenTextColor' as='h2'>Katipunan Club</Header>
+                    <Image centered fluid src='images/club3.png'/>
+                  </Container>
                 </Segment>
-                <Image centered fluid src='images/club3.png'/>
               </Grid.Column>
             </Grid>
           </Container>
@@ -166,15 +184,13 @@ class Landing extends React.Component {
             <Grid columns={2} centered>
               <Grid.Column verticalAlign='middle' textAlign={'center'}>
                 <Segment>
-                  <Header className='UHGreenTextColor' as={'h2'}>Easily browse the registered clubs
-                    of UH Manoa by
-                    name and
-                    category!
+                  <Header className='UHGreenTextColor' as={'h2'}>
+                    Easily browse the registered clubs of UH Manoa by name and category!
                   </Header>
                 </Segment>
               </Grid.Column>
               <Grid.Column>
-                <Image src={'images/clubs.jpg'}/>
+                <Image as={Link} to='/list' src={'images/clubs.jpg'}/>
               </Grid.Column>
             </Grid>
           </Container>
