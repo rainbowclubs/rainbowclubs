@@ -34,13 +34,13 @@ class ClubReview extends React.Component {
           <Feed.Content>
             <Feed.Label attached='top' className={'reviewName'}>
               <Grid columns={2}>
-                <Grid.Column>
+                <Grid.Column verticalAlign='middle'>
                   {this.props.review.owner}
                 </Grid.Column>
                 <Grid.Column textAlign='right'>
                   <Popup on='hover' trigger={<Button style={{ background: 'transparent' }} icon
                                                      onClick={this.open}>
-                    <Icon color='red' name='flag'/>
+                    <Icon position='top' color='red' name='flag'/>
                   </Button>} content='Flag review'>
 
                   </Popup>
