@@ -1,20 +1,56 @@
 import React from 'react';
-import { Feed, Rating } from 'semantic-ui-react';
+import { Feed, Rating, Button, Icon, Confirm, Grid, Header, Popup } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
+import { Reviews } from '/imports/api/review/review';
+import { Bert } from 'meteor/themeteorchef:bert';
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 class ClubReview extends React.Component {
+
+  state = { open: false }
+
+  open = () => this.setState({ open: true })
+
+  close = () => this.setState({ open: false })
+
+  handleClick = () => {
+    if (this.props.review.flagged === false) {
+      Reviews.update(this.props.review._id, {
+        $set: {
+          flagged: true,
+          reviewed: false,
+          visible: false,
+        },
+      }, (error) => (error ?
+          Bert.alert({ type: 'danger', message: `Failed to flag review: ${error.message}` }) :
+          Bert.alert({ type: 'success', message: 'Review flagged' })));
+    }
+  }
+
   render() {
     return (
         <Feed.Event>
           <Feed.Content>
-            <Feed.Label className={'reviewName'}>
-              {this.props.review.owner}
+            <Feed.Label attached='top' className={'reviewName'}>
+              <Grid columns={2}>
+                <Grid.Column>
+                  {this.props.review.owner}
+                </Grid.Column>
+                <Grid.Column textAlign='right'>
+                  <Popup on='hover' trigger={<Button style={{ background: 'transparent' }} icon
+                                                     onClick={this.open}>
+                    <Icon color='red' name='flag'/>
+                  </Button>} content='Flag review'>
+
+                  </Popup>
+                  <Confirm open={this.state.open} onCancel={this.close} onConfirm={this.handleClick}/>
+                </Grid.Column>
+              </Grid>
             </Feed.Label>
             <Feed.Date className={'reviewDate'} content={this.props.review.createdAt.toLocaleDateString('en-US')}/>
             <Rating icon='star' defaultRating={this.props.review.rating} maxRating={5} disabled/>
-              <Feed.Summary>
+            <Feed.Summary>
               {this.props.review.description}
             </Feed.Summary>
           </Feed.Content>
@@ -30,3 +66,4 @@ ClubReview.propTypes = {
 
 /** Wrap this component in withRouter since we use the <Link> React Router element. */
 export default withRouter(ClubReview);
+
