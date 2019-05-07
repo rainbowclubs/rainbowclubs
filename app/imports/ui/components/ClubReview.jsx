@@ -13,7 +13,7 @@ class ClubReview extends React.Component {
               {this.props.review.owner}
             </Feed.Label>
             <Feed.Date className={'reviewDate'} content={this.props.review.createdAt.toLocaleDateString('en-US')}/>
-            <Rating defaultRating={this.props.review.rating} maxRating={5} disabled/>
+            <Rating icon='star' defaultRating={this.props.review.rating} maxRating={5} disabled/>
               <Feed.Summary>
               {this.props.review.description}
             </Feed.Summary>

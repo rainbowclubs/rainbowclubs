@@ -11,9 +11,17 @@ class ReviewItem extends React.Component {
   }
 
   render() {
+    let reviewDescription;
+    if (this.props.review.description === undefined || this.props.review.description.length === 0) {
+      reviewDescription = 'No description';
+    } else if (this.props.review.description.length > 100) {
+      reviewDescription = `${this.props.review.description.substring(0, 97)}...`;
+    } else {
+      reviewDescription = this.props.review.description;
+    }
     return (
         <Table.Row>
-          <Table.Cell>{(this.props.review.description)}</Table.Cell>
+          <Table.Cell>{reviewDescription}</Table.Cell>
           <Table.Cell>{this.convertBoolToYesNo(this.props.review.flagged)}</Table.Cell>
           <Table.Cell>{this.convertBoolToYesNo(this.props.review.reviewed)}</Table.Cell>
           <Table.Cell>{this.convertBoolToYesNo(this.props.review.visible)}</Table.Cell>

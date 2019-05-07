@@ -13,7 +13,7 @@ function addData(data) {
 if (Reviews.find().count() === 0) {
   if (Meteor.settings.defaultReviews) {
     console.log('Creating default reviews.');
-    const test = Clubs.find({ name: 'AECT- Hawaii' }).fetch();
+    const test = Clubs.find({ name: 'Association for Computing Machinery at Manoa' }).fetch();
     Meteor.settings.defaultReviews.forEach(function (currentValue, index) {
       Meteor.settings.defaultReviews[index].club = test[0]._id;
     });

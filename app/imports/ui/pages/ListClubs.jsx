@@ -59,6 +59,7 @@ class ListClubs extends React.Component {
         filteredClubs.push(element);
       }
     }.bind(this));
+    uniqueTypes.sort();
     const typeOptions = [];
     uniqueTypes.forEach(function (element) {
       typeOptions.push({
