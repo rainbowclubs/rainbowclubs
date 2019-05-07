@@ -1,6 +1,6 @@
 import React from 'react';
 import { Reviews, ReviewSchema } from '/imports/api/review/review';
-import { Segment, Rating, Grid} from 'semantic-ui-react';
+import { Segment, Rating, Grid } from 'semantic-ui-react';
 import AutoForm from 'uniforms-semantic/AutoForm';
 import LongTextField from 'uniforms-semantic/LongTextField';
 import SubmitField from 'uniforms-semantic/SubmitField';
