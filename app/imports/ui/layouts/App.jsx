@@ -10,7 +10,6 @@ import Landing from '../pages/Landing';
 import ListClubs from '../pages/ListClubs';
 import ModerateListReviews from '../pages/ModeratorListReviews';
 import ModerateListClubs from '../pages/ModeratorListClubs';
-import ListStuffAdmin from '../pages/ListStuffAdmin';
 import NotFound from '../pages/NotFound';
 import Signin from '../pages/Signin';
 import Signup from '../pages/Signup';
@@ -42,7 +41,6 @@ class App extends React.Component {
               <ModeratorProtectedRoute path="/moderatereview/:_id" component={ModerateReview}/>
               <ModeratorProtectedRoute path="/moderateclub/:_id" component={ModerateClub}/>
               <AdminProtectedRoute path="/import" component={ImportCSVAdmin}/>
-              <AdminProtectedRoute path="/admin" component={ListStuffAdmin}/>
               <ProtectedRoute path="/signout" component={Signout}/>
               <Route component={NotFound}/>
             </Switch>

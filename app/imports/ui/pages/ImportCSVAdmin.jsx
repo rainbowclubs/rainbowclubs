@@ -6,7 +6,6 @@ import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { Bert } from 'meteor/themeteorchef:bert';
 
-/** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class ImportCSVAdmin extends React.Component {
   constructor(props) {
     super(props);

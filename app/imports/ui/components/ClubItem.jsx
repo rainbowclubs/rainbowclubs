@@ -7,7 +7,6 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { withTracker } from 'meteor/react-meteor-data';
 
-/** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 class Club extends React.Component {
   render() {
     const UHGreenButton = 'UHGreenBackground UHGreenBackgroundHover UHWhiteTextColor';

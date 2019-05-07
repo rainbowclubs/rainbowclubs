@@ -208,7 +208,7 @@ Landing.propTypes = {
 
 /** withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker */
 export default withTracker(() => {
-  // Get access to Stuff documents.
+  // Get access to Club documents.
   const clubSubscription = Meteor.subscribe('Clubs');
   const reviewSubscription = Meteor.subscribe('ReviewsModerator');
   return {
