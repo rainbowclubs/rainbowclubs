@@ -29,6 +29,13 @@ Meteor.publish('Reviews', function publish() {
   return this.ready();
 });
 
+Meteor.publish('AllReviews', function publish() {
+  if (this.userId) {
+    return Reviews.find();
+  }
+  return this.ready();
+});
+
 /** This subscription publishes all docs regardless of user, but only if the logged in user is Admin or Moderator. */
 Meteor.publish('ReviewsModerator', function publish() {
   if (this.userId && (Roles.userIsInRole(this.userId, 'moderator') || Roles.userIsInRole(this.userId, 'admin'))) {
