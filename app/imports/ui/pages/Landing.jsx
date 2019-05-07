@@ -75,14 +75,14 @@ class Landing extends React.Component {
                           content='Flagged Reviews'
                           label={{ basic: true, pointing: 'right', content: pendingReviews }}
                           labelPosition='left'
-                          as={Link} to='moderate'/></Grid.Column>
+                          as={Link} to='moderatereviews'/></Grid.Column>
                 <Grid.Column>
                   <Button position='right' size='huge' labeled='true'
                           className='UHGreenBackground UHGreenBackgroundHover UHWhiteTextColor'
                           content='Modification Reviews'
                           label={{ basic: true, pointing: 'right', content: pendingModifications }}
                           labelPosition='left'
-                          as={Link} to='moderate'/>
+                          as={Link} to='moderateclubs'/>
                 </Grid.Column>
               </Grid>
             </Container>

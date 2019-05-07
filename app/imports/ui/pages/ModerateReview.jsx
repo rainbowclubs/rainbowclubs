@@ -21,8 +21,7 @@ class ModerateReview extends React.Component {
     Reviews.update(_id, { $set: { description, flagged, reviewed, visible } }, (error) => (error ?
         Bert.alert({ type: 'danger', message: `Update failed: ${error.message}` }) :
         Bert.alert({ type: 'success', message: 'Update succeeded' })));
-}
-
+  }
 
   /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
   render() {
@@ -43,9 +42,9 @@ class ModerateReview extends React.Component {
                 <BoolField name='visible'/>
                 <SubmitField value='Submit'/>
                 <ErrorsField/>
-                <HiddenField name='owner' />
-                <HiddenField name='club' />
-                <HiddenField name='rating' />
+                <HiddenField name='owner'/>
+                <HiddenField name='club'/>
+                <HiddenField name='rating'/>
               </Segment>
             </AutoForm>
           </Grid.Column>
@@ -66,7 +65,7 @@ export default withTracker(({ match }) => {
   // Get the documentID from the URL field. See imports/ui/layouts/App.jsx for the route containing :_id.
   const documentId = match.params._id;
   // Get access to Stuff documents.
-  const subscription = Meteor.subscribe('ReviewsModerator');
+  const subscription = Meteor.subscribe('Reviews');
   return {
     doc: Reviews.findOne(documentId),
     ready: subscription.ready(),
