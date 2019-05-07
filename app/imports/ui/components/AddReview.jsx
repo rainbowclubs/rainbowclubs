@@ -1,11 +1,10 @@
 import React from 'react';
 import { Reviews, ReviewSchema } from '/imports/api/review/review';
-import { Segment } from 'semantic-ui-react';
+import { Segment, Rating, Grid} from 'semantic-ui-react';
 import AutoForm from 'uniforms-semantic/AutoForm';
 import LongTextField from 'uniforms-semantic/LongTextField';
 import SubmitField from 'uniforms-semantic/SubmitField';
 import HiddenField from 'uniforms-semantic/HiddenField';
-import NumField from 'uniforms-semantic/NumField';
 import ErrorsField from 'uniforms-semantic/ErrorsField';
 import { Bert } from 'meteor/themeteorchef:bert';
 import PropTypes from 'prop-types';
@@ -31,11 +30,15 @@ class AddReview extends React.Component {
     }
   }
 
+  state = {};
+
+  handleRate = (e, { rating, maxRating }) => this.setState({ rating, maxRating });
+
   /** On submit, insert the data. */
   submit(data) {
     const ReviewObject = {
       club: this.props.club,
-      rating: data.rating,
+      rating: this.state.rating,
       description: (data.description === undefined ? '' : data.description.trim()),
       owner: this.props.owner,
       createdAt: new Date(),
@@ -47,11 +50,18 @@ class AddReview extends React.Component {
   render() {
     return (
         <Segment>
-          <AutoForm ref={(ref) => { this.formRef = ref; }} schema={ReviewSchema} onSubmit={this.submit}>
-            <NumField as='rating' name={'rating'} label={'Rating'}/>
+          <Grid textAlign='center'>
+            <Grid.Row/>
+            {<Rating icon='star' size='massive' maxRating={5} onRate={this.handleRate}/>}
+            <Grid.Row/>
+          </Grid>
+          <AutoForm ref={(ref) => {
+            this.formRef = ref;
+          }} schema={ReviewSchema} onSubmit={this.submit}>
             <LongTextField placeholder='Comments' label='Comments (Optional)' name={'description'}/>
             <SubmitField value='Submit'/>
             <ErrorsField/>
+            <HiddenField name='rating' value={3}/>
             <HiddenField name='club' value='fakeclubid'/>
             <HiddenField name='owner' value='fakeuser@foo.com'/>
             <HiddenField name='reviewed' value={false}/>
