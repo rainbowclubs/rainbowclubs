@@ -1,10 +1,10 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { Container, Table, Header, Loader, Popup } from 'semantic-ui-react';
-import ReviewItem from '/imports/ui/components/ReviewItem';
+import ClubReviewItem from '/imports/ui/components/ClubReviewItem';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
-import { Reviews } from '../../api/review/review';
+import { Clubs } from '../../api/club/club';
 
 /** Renders a table containing all of the Review documents. Use <ReviewItem> to render each row. */
 class ModeratorListClubs extends React.Component {
@@ -18,32 +18,24 @@ class ModeratorListClubs extends React.Component {
   renderPage() {
     return (
         <Container>
-          <Header as="h2" textAlign="center">Pending Reviews</Header>
+          <Header as="h2" textAlign="center">Pending Club Modifications</Header>
           <Table className='UHGreenShadow' celled>
             <Table.Header>
               <Table.Row>
                 <Table.HeaderCell>
-                  <Popup on='hover' trigger={<Header as='h4'>Contents</Header>}
-                         content='Review contents'/>
+                  <Popup on='hover' trigger={<Header as='h4'>Club</Header>} content='Club name'/>
                 </Table.HeaderCell>
                 <Table.HeaderCell>
-                  <Popup on='hover' trigger={<Header as='h4'>Flagged</Header>}
-                         content='Review has been flagged for review'/>
-                </Table.HeaderCell>
-                <Table.HeaderCell>
-                  <Popup on='hover' trigger={<Header as='h4'>Reviewed</Header>} content='Review has been reviewed'/>
-                </Table.HeaderCell>
-                <Table.HeaderCell>
-                  <Popup on='hover' trigger={<Header as='h4'>Visible</Header>} content='Review is visible'/>
+                  <Popup on='hover' trigger={<Header as='h4'>Reviewed</Header>} content='Club has been reviewed'/>
                 </Table.HeaderCell>
                 <Table.HeaderCell>
                   <Popup on='hover' trigger={<Header as='h4'>Review</Header>}
-                         content='Click to view review'/>
+                         content='Click to view approve/disapprove club modification'/>
                 </Table.HeaderCell>
               </Table.Row>
             </Table.Header>
             <Table.Body>
-              {this.props.clubs.map((review) => <ReviewItem key={review._id} review={review}/>)}
+              {this.props.clubs.map((club) => <ClubReviewItem key={club._id} club={club}/>)}
             </Table.Body>
           </Table>
         </Container>
@@ -62,7 +54,7 @@ export default withTracker(() => {
   // Get access to Review documents.
   const subscription = Meteor.subscribe('ClubsReview');
   return {
-    clubs: Reviews.find({}).fetch(),
+    clubs: Clubs.find({}).fetch(),
     ready: subscription.ready(),
   };
 })(ModeratorListClubs);

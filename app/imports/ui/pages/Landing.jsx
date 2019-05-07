@@ -58,7 +58,7 @@ class Landing extends React.Component {
             <Header className='UHGreenTextColor' as="h1" textAlign="center">Moderator Tasks</Header>
             <Container textAlign='center'>
               <Button size='huge' className='UHGreenBackground UHGreenBackgroundHover UHWhiteTextColor'
-                as={ Link } to='moderate'>Moderate Reviews</Button>
+                as={ Link } to='/moderatereviews'>Moderate Reviews</Button>
             </Container>
           </Container>
       );

@@ -15,7 +15,7 @@ class ClubReviewItem extends React.Component {
         <Table.Row>
           <Table.Cell>{(this.props.club.name)}</Table.Cell>
           <Table.Cell>{this.convertBoolToYesNo(this.props.club.reviewed)}</Table.Cell>
-          <Table.Cell><Link to={`/moderatereview/${this.props.review._id}`}>View</Link></Table.Cell>
+          <Table.Cell><Link to={`/moderateclub/${this.props.club._id}`}>View</Link></Table.Cell>
         </Table.Row>
     );
   }
